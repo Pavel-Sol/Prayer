@@ -3,7 +3,10 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParams} from '../../../App';
 
-const auth = true;
+import {GrClose} from 'react-icons/gr';
+import AddIcon from '../../icons/AddIcon';
+
+const auth = false;
 
 type AuthScreenProps = NativeStackScreenProps<RootStackParams, 'Auth'>;
 const AuthScreen = ({navigation}: AuthScreenProps) => {
