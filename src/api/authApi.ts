@@ -1,5 +1,4 @@
-import axios, {AxiosResponse} from 'axios';
-import {AuthSignInResponse, AuthSignUpResponse} from '../types/types';
+import axios from 'axios';
 
 type UserProps = {
   email: string;

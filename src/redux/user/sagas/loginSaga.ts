@@ -5,6 +5,8 @@ import {AuthSignInResponse, LoginUserActionType} from '../../../types/types';
 import {login} from '../userSlice';
 import {loginUserAction} from '../../actions';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 function* signInWorkerSaga(action: LoginUserActionType) {
   try {
     const response: AxiosResponse<AuthSignInResponse> = yield call(() =>
@@ -13,6 +15,13 @@ function* signInWorkerSaga(action: LoginUserActionType) {
 
     console.log('res loginsaga ', response.data);
     yield put(login({userName: response.data.name, userId: response.data.id}));
+    yield call(() => {
+      try {
+        AsyncStorage.setItem('token', response.data.token);
+      } catch (error) {
+        console.log('error saveToken ', error);
+      }
+    });
   } catch (error) {
     console.log(error);
   }

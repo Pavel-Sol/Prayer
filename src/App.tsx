@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {AuthScreen} from './views/screens/AuthScreen';
@@ -9,6 +9,8 @@ import AddIcon from './views/icons/AddIcon';
 import {Provider} from 'react-redux';
 import store from './redux/store';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export type RootStackParams = {
   Auth: undefined;
   MyDesc: undefined;
@@ -16,6 +18,17 @@ export type RootStackParams = {
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 const App = () => {
+  useEffect(() => {
+    const getToken = async () => {
+      try {
+        const token = await AsyncStorage.getItem('token');
+        console.log('token == ', token);
+      } catch (error) {
+        console.log('error getToken ', error);
+      }
+    };
+    getToken();
+  }, []);
   return (
     <Provider store={store}>
       <NavigationContainer>

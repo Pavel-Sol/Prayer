@@ -14,8 +14,13 @@ const userSlice = createSlice({
       state.userName = payload.userName;
       state.userId = payload.userId;
     },
+    logout(state) {
+      state.isAuth = false;
+      state.userName = '';
+      state.userId = 123;
+    },
   },
 });
 
-export const {login} = userSlice.actions;
+export const {login, logout} = userSlice.actions;
 export default userSlice.reducer;
