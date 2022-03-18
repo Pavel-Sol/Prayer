@@ -8,3 +8,14 @@ export const loginUserAction = createAction('loginUser', (user: UserProps) => {
     },
   };
 });
+
+export const registerUserAction = createAction(
+  'registerUser',
+  (user: UserProps) => {
+    return {
+      payload: {
+        user,
+      },
+    };
+  },
+);

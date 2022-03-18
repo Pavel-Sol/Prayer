@@ -1,4 +1,4 @@
-import {loginUserAction} from '../redux/actions';
+import {loginUserAction, registerUserAction} from '../redux/actions';
 
 export type UserType = {
   email: string;
@@ -36,4 +36,6 @@ export type AuthSignInResponse = {
   token: string;
 };
 
+// -------------------------------------------------
 export type LoginUserActionType = ReturnType<typeof loginUserAction>;
+export type RegisterUserActionType = ReturnType<typeof registerUserAction>;

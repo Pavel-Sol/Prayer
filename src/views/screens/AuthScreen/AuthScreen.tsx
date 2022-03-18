@@ -4,22 +4,32 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParams} from '../../../App';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../../redux/store';
-import {loginUserAction} from '../../../redux/actions';
+import {loginUserAction, registerUserAction} from '../../../redux/actions';
 
 type AuthScreenProps = NativeStackScreenProps<RootStackParams, 'Auth'>;
 const AuthScreen = ({navigation}: AuthScreenProps) => {
   const auth = useSelector((state: RootState) => state.user.isAuth);
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [emailLogin, setEmailLogin] = useState('');
+  const [passwordLogin, setPasswordLogin] = useState('');
 
-  const handleNavigate = () => {
-    navigation.navigate('MyDesc');
+  const [emailSignUp, setEmailSignUp] = useState('');
+  const [passwordSignUp, setPasswordSignUp] = useState('');
+  const [nameSignUp, setNameSignUp] = useState('');
+
+  const handleSubmitLogin = () => {
+    dispatch(loginUserAction({email: emailLogin, password: passwordLogin}));
   };
 
-  const handleSubmit = () => {
-    dispatch(loginUserAction({email, password}));
+  const handleSubmitSignUp = () => {
+    dispatch(
+      registerUserAction({
+        email: emailSignUp,
+        password: passwordSignUp,
+        name: nameSignUp,
+      }),
+    );
   };
 
   useEffect(() => {
@@ -29,29 +39,55 @@ const AuthScreen = ({navigation}: AuthScreenProps) => {
     }
   }, [auth]);
   return (
-    <View>
-      <Text>AuthScreen</Text>
-      <TouchableOpacity onPress={handleNavigate}>
-        <Text>LOGIN====</Text>
-      </TouchableOpacity>
+    <>
       <View>
-        <TextInput
-          placeholder="введите email"
-          value={email}
-          onChangeText={setEmail}
-        />
+        <Text>LOGIN-BLOCK</Text>
+        <View>
+          <TextInput
+            placeholder="введите email"
+            value={emailLogin}
+            onChangeText={setEmailLogin}
+          />
 
-        <TextInput
-          placeholder="введите пароль"
-          value={password}
-          onChangeText={setPassword}
-        />
+          <TextInput
+            placeholder="введите пароль"
+            value={passwordLogin}
+            onChangeText={setPasswordLogin}
+          />
+        </View>
+
+        <View>
+          <Button title="---login----" onPress={handleSubmitLogin} />
+        </View>
       </View>
-
+      {/* ----------------------------- */}
       <View>
-        <Button title="проверка" onPress={handleSubmit} />
+        <Text>SIGNUP-BLOCK</Text>
+        <View>
+          <TextInput
+            placeholder="введите email"
+            value={emailSignUp}
+            onChangeText={setEmailSignUp}
+          />
+
+          <TextInput
+            placeholder="введите имя"
+            value={nameSignUp}
+            onChangeText={setNameSignUp}
+          />
+
+          <TextInput
+            placeholder="введите пароль"
+            value={passwordSignUp}
+            onChangeText={setPasswordSignUp}
+          />
+        </View>
+
+        <View>
+          <Button title="---SIGN-UP----" onPress={handleSubmitSignUp} />
+        </View>
       </View>
-    </View>
+    </>
   );
 };
 

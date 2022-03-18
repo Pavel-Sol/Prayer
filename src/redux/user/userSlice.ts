@@ -8,10 +8,11 @@ const userSlice = createSlice({
     userId: 123,
   },
   reducers: {
-    login(state, {payload}: PayloadAction<{userName: string}>) {
-      console.log('payload.userName', payload.userName);
+    login(state, {payload}: PayloadAction<{userName: string; userId: number}>) {
+      // console.log('payload.userName', payload.userName);
       state.isAuth = true;
       state.userName = payload.userName;
+      state.userId = payload.userId;
     },
   },
 });

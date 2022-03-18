@@ -1,35 +1,27 @@
 import {call, put, takeEvery} from '@redux-saga/core/effects';
-import {authApi} from '../../../api/authApi';
-import {AuthSignUpResponse} from '../../../types/types';
+import {AxiosResponse} from 'axios';
+import {registerUser} from '../../../api/authApi';
+import {
+  AuthSignInResponse,
+  AuthSignUpResponse,
+  RegisterUserActionType,
+} from '../../../types/types';
+import {registerUserAction} from '../../actions';
 
-export const signUpAction = (
-  email: string,
-  name: string,
-  password: string,
-) => ({
-  type: 'SAGA/SIGN_UP',
-  email,
-  name,
-  password,
-});
-
-function* signUpWorkerSaga(action: ReturnType<typeof signUpAction>) {
+function* signUpWorkerSaga(action: RegisterUserActionType) {
   try {
-    const res: AuthSignUpResponse = yield call(
-      authApi.signUp,
-      action.email,
-      action.name,
-      action.password,
+    // console.log('action.payload', action.payload);
+    const response: AxiosResponse<AuthSignInResponse> = yield call(() =>
+      registerUser(action.payload.user),
     );
-
-    console.log(res);
+    console.log('res register ', response.data);
   } catch (error) {
     console.log(error);
   }
 }
 
 function* registerSaga() {
-  yield takeEvery('SAGA/SIGN_UP', signUpWorkerSaga);
+  yield takeEvery(registerUserAction, signUpWorkerSaga);
 }
 
 export default registerSaga;

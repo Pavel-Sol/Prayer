@@ -9,11 +9,13 @@ type MyDescScreenProps = NativeStackScreenProps<RootStackParams, 'Auth'>;
 
 const MyDescScreen = ({navigation}: MyDescScreenProps) => {
   const userName = useSelector((state: RootState) => state.user.userName);
+  const userId = useSelector((state: RootState) => state.user.userId);
   // console.log('userName ====', userName);
   return (
     <View>
       <Text>MyDescScreen</Text>
       <Text>userName : {userName}</Text>
+      <Text>userId : {userId}</Text>
     </View>
   );
 };
