@@ -2,16 +2,10 @@ import * as React from 'react';
 import Svg, {Path} from 'react-native-svg';
 
 type AddIconPropsType = {
-  width?: number;
-  height?: number;
   fill?: string;
 };
-const AddIcon: React.FC<AddIconPropsType> = ({
-  width = 16,
-  height = 16,
-  fill = '#72A8BC',
-}) => (
-  <Svg width={width} height={height} fill="none">
+const AddIcon: React.FC<AddIconPropsType> = ({fill = '#72A8BC'}) => (
+  <Svg width={16} height={16} fill="none">
     <Path
       fillRule="evenodd"
       clipRule="evenodd"

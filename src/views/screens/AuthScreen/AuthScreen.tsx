@@ -3,9 +3,9 @@ import {
   View,
   Text,
   TouchableOpacity,
-  TextInput,
   Button,
   ActivityIndicator,
+  StyleSheet,
 } from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParams} from '../../../navigation/RootStack';
@@ -15,6 +15,8 @@ import {loginUserAction, registerUserAction} from '../../../redux/actions';
 import {localStorage} from '../../../services/localStorage';
 import {loading} from '../../../redux/user/userSlice';
 import {Loader} from '../../UIcomponents/Loader';
+import {Input} from '../../UIcomponents/Input';
+import AddIcon from '../../icons/AddIcon';
 
 type AuthScreenProps = NativeStackScreenProps<RootStackParams, 'Auth'>;
 const AuthScreen = ({navigation}: AuthScreenProps) => {
@@ -46,7 +48,7 @@ const AuthScreen = ({navigation}: AuthScreenProps) => {
   useEffect(() => {
     dispatch(loading(true));
     localStorage.getToken().then(token => {
-      console.log('token', token);
+      // console.log('token', token);
       if (token) {
         navigation.push('MyDesc');
       }
@@ -59,17 +61,17 @@ const AuthScreen = ({navigation}: AuthScreenProps) => {
   }
 
   return (
-    <>
+    <View style={styles.container}>
       <View>
         <Text>LOGIN-BLOCK</Text>
         <View>
-          <TextInput
+          <Input
             placeholder="введите email"
             value={emailLogin}
             onChangeText={setEmailLogin}
           />
 
-          <TextInput
+          <Input
             placeholder="введите пароль"
             value={passwordLogin}
             onChangeText={setPasswordLogin}
@@ -84,19 +86,19 @@ const AuthScreen = ({navigation}: AuthScreenProps) => {
       <View>
         <Text>SIGNUP-BLOCK</Text>
         <View>
-          <TextInput
+          <Input
             placeholder="введите email"
             value={emailSignUp}
             onChangeText={setEmailSignUp}
           />
 
-          <TextInput
+          <Input
             placeholder="введите имя"
             value={nameSignUp}
             onChangeText={setNameSignUp}
           />
 
-          <TextInput
+          <Input
             placeholder="введите пароль"
             value={passwordSignUp}
             onChangeText={setPasswordSignUp}
@@ -107,8 +109,16 @@ const AuthScreen = ({navigation}: AuthScreenProps) => {
           <Button title="---SIGN-UP----" onPress={handleSubmitSignUp} />
         </View>
       </View>
-    </>
+    </View>
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+    height: '100%',
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 15,
+    paddingVertical: 15,
+  },
+});
 export default AuthScreen;
