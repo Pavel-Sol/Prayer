@@ -2,12 +2,13 @@ import {AxiosResponse} from 'axios';
 import {loginUser} from './../../../api/authApi';
 import {call, put, takeEvery} from '@redux-saga/core/effects';
 import {AuthSignInResponse, LoginUserActionType} from '../../../types/types';
-import {login} from '../userSlice';
+import {loading, login} from '../userSlice';
 import {loginUserAction} from '../../actions';
 import {localStorage} from '../../../services/localStorage';
 
 function* signInWorkerSaga(action: LoginUserActionType) {
   try {
+    yield put(loading(true));
     const response: AxiosResponse<AuthSignInResponse> = yield call(() =>
       loginUser(action.payload.user),
     );
@@ -19,6 +20,8 @@ function* signInWorkerSaga(action: LoginUserActionType) {
     });
   } catch (error) {
     console.log(error);
+  } finally {
+    yield put(loading(false));
   }
 }
 

@@ -6,6 +6,7 @@ const userSlice = createSlice({
     isAuth: false,
     userName: '',
     userId: 123,
+    isLoading: false,
   },
   reducers: {
     login(state, {payload}: PayloadAction<{userName: string; userId: number}>) {
@@ -19,8 +20,11 @@ const userSlice = createSlice({
       state.userName = '';
       state.userId = 123;
     },
+    loading(state, {payload}: PayloadAction<boolean>) {
+      state.isLoading = payload;
+    },
   },
 });
 
-export const {login, logout} = userSlice.actions;
+export const {login, logout, loading} = userSlice.actions;
 export default userSlice.reducer;

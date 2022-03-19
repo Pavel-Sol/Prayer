@@ -1,15 +1,25 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity, TextInput, Button} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  Button,
+  ActivityIndicator,
+} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParams} from '../../../navigation/RootStack';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../../redux/store';
 import {loginUserAction, registerUserAction} from '../../../redux/actions';
 import {localStorage} from '../../../services/localStorage';
+import {loading} from '../../../redux/user/userSlice';
+import {Loader} from '../../UIcomponents/Loader';
 
 type AuthScreenProps = NativeStackScreenProps<RootStackParams, 'Auth'>;
 const AuthScreen = ({navigation}: AuthScreenProps) => {
   const isAuth = useSelector((state: RootState) => state.user.isAuth);
+  const isLoading = useSelector((state: RootState) => state.user.isLoading);
   const dispatch = useDispatch();
 
   const [emailLogin, setEmailLogin] = useState('');
@@ -34,11 +44,19 @@ const AuthScreen = ({navigation}: AuthScreenProps) => {
   };
 
   useEffect(() => {
+    dispatch(loading(true));
     localStorage.getToken().then(token => {
       console.log('token', token);
-      if (token) navigation.push('MyDesc');
+      if (token) {
+        navigation.push('MyDesc');
+      }
+      dispatch(loading(false));
     });
   }, [isAuth]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <>
