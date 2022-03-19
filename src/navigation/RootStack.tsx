@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {AuthScreen} from '../views/screens/AuthScreen';
 import {MyDescScreen} from '../views/screens/MyDescScreen';
 import {Alert, TouchableOpacity} from 'react-native';
 import AddIcon from '../views/icons/AddIcon';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from '../redux/store';
+import {localStorage} from '../services/localStorage';
+import {loading, login} from '../redux/user/userSlice';
 
 export type RootStackParams = {
   Auth: undefined;
@@ -14,32 +18,51 @@ export type RootStackParams = {
 const Stack = createNativeStackNavigator<RootStackParams>();
 
 const RootStack = () => {
+  const dispatch = useDispatch();
+  const token = useSelector((state: RootState) => state.user.userToken);
+
+  useEffect(() => {
+    dispatch(loading(true));
+    localStorage
+      .getToken()
+      .then(token => {
+        // console.log('token in root-stack', token);
+        if (token) {
+          dispatch(login({userToken: token}));
+        }
+      })
+      .finally(() => dispatch(loading(false)));
+  }, []);
+
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerTitleAlign: 'center',
         }}>
-        <Stack.Screen
-          name="Auth"
-          component={AuthScreen}
-          options={({navigation, route}) => ({
-            title: 'Auth',
-          })}
-        />
-        <Stack.Screen
-          name="MyDesc"
-          component={MyDescScreen}
-          options={() => ({
-            title: 'My Desc',
-            headerRight: () => (
-              <TouchableOpacity
-                onPress={() => Alert.alert('This is a button!!!!!')}>
-                <AddIcon />
-              </TouchableOpacity>
-            ),
-          })}
-        />
+        {token ? (
+          <Stack.Screen
+            name="MyDesc"
+            component={MyDescScreen}
+            options={() => ({
+              title: 'My Desc',
+              headerRight: () => (
+                <TouchableOpacity
+                  onPress={() => Alert.alert('This is a button!!!!!')}>
+                  <AddIcon />
+                </TouchableOpacity>
+              ),
+            })}
+          />
+        ) : (
+          <Stack.Screen
+            name="Auth"
+            component={AuthScreen}
+            options={({navigation, route}) => ({
+              title: 'Auth',
+            })}
+          />
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

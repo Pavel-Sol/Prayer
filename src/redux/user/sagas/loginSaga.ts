@@ -14,7 +14,7 @@ function* signInWorkerSaga(action: LoginUserActionType) {
     );
 
     // console.log('res loginSaga ', response.data);
-    yield put(login({userName: response.data.name, userId: response.data.id}));
+    yield put(login({userToken: response.data.token}));
     yield call(() => {
       localStorage.saveToken(response.data.token);
     });

@@ -10,21 +10,18 @@ import {localStorage} from '../../../services/localStorage';
 type MyDescScreenProps = NativeStackScreenProps<RootStackParams, 'Auth'>;
 
 const MyDescScreen = ({navigation}: MyDescScreenProps) => {
-  const userName = useSelector((state: RootState) => state.user.userName);
-  const userId = useSelector((state: RootState) => state.user.userId);
+  const token = useSelector((state: RootState) => state.user.userToken);
   const dispatch = useDispatch();
 
   const handleLogOut = () => {
     // для теста
     dispatch(logout());
     localStorage.removeToken();
-    navigation.push('Auth');
   };
   return (
     <View>
       <Text>MyDescScreen</Text>
-      <Text>userName : {userName}</Text>
-      <Text>userId : {userId}</Text>
+      <Text>token : {token}</Text>
       <View>
         {/* для теста, позже уберу */}
         <Button title="ВЫЙТИ" onPress={handleLogOut} />
