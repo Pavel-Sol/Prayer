@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, TextInput, Button} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParams} from '../../../App';
+import {RootStackParams} from '../../../navigation/RootStack';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../../redux/store';
 import {loginUserAction, registerUserAction} from '../../../redux/actions';
+import {localStorage} from '../../../services/localStorage';
 
 type AuthScreenProps = NativeStackScreenProps<RootStackParams, 'Auth'>;
 const AuthScreen = ({navigation}: AuthScreenProps) => {
-  const auth = useSelector((state: RootState) => state.user.isAuth);
+  const isAuth = useSelector((state: RootState) => state.user.isAuth);
   const dispatch = useDispatch();
 
   const [emailLogin, setEmailLogin] = useState('');
@@ -33,11 +34,12 @@ const AuthScreen = ({navigation}: AuthScreenProps) => {
   };
 
   useEffect(() => {
-    // console.log('auth --- ', auth);
-    if (auth) {
-      navigation.push('MyDesc');
-    }
-  }, [auth]);
+    localStorage.getToken().then(token => {
+      console.log('token', token);
+      if (token) navigation.push('MyDesc');
+    });
+  }, [isAuth]);
+
   return (
     <>
       <View>

@@ -4,8 +4,7 @@ import {call, put, takeEvery} from '@redux-saga/core/effects';
 import {AuthSignInResponse, LoginUserActionType} from '../../../types/types';
 import {login} from '../userSlice';
 import {loginUserAction} from '../../actions';
-
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {localStorage} from '../../../services/localStorage';
 
 function* signInWorkerSaga(action: LoginUserActionType) {
   try {
@@ -13,14 +12,10 @@ function* signInWorkerSaga(action: LoginUserActionType) {
       loginUser(action.payload.user),
     );
 
-    console.log('res loginsaga ', response.data);
+    // console.log('res loginSaga ', response.data);
     yield put(login({userName: response.data.name, userId: response.data.id}));
     yield call(() => {
-      try {
-        AsyncStorage.setItem('token', response.data.token);
-      } catch (error) {
-        console.log('error saveToken ', error);
-      }
+      localStorage.saveToken(response.data.token);
     });
   } catch (error) {
     console.log(error);
