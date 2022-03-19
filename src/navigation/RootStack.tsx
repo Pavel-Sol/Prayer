@@ -3,8 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {AuthScreen} from '../views/screens/AuthScreen';
 import {MyDescScreen} from '../views/screens/MyDescScreen';
-import {Alert} from 'react-native';
-import {Button} from '../views/UIcomponents/Button';
+import {Alert, TouchableOpacity} from 'react-native';
 import AddIcon from '../views/icons/AddIcon';
 
 export type RootStackParams = {
@@ -34,9 +33,10 @@ const RootStack = () => {
           options={() => ({
             title: 'My Desc',
             headerRight: () => (
-              <Button onPress={() => Alert.alert('This is a button!!!!!')}>
+              <TouchableOpacity
+                onPress={() => Alert.alert('This is a button!!!!!')}>
                 <AddIcon />
-              </Button>
+              </TouchableOpacity>
             ),
           })}
         />
