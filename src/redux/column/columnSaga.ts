@@ -8,8 +8,6 @@ import {setColumns} from './columnSlice';
 function* fetchColumnsSaga() {
   try {
     const response: AxiosResponse<ColumnType[]> = yield call(getColumnsApi);
-    // console.log('response fetchColumnsSaga', response);
-    // console.log(response.data);
     yield put(setColumns({columns: response.data}));
   } catch (error) {
     console.log(error);

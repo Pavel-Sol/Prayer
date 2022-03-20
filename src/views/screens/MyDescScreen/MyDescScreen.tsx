@@ -15,7 +15,6 @@ const MyDescScreen = ({navigation}: MyDescScreenProps) => {
   const dispatch = useDispatch();
 
   const columns = useSelector((state: RootState) => state.column.columns);
-  // console.log('columns ', columns);
 
   useEffect(() => {
     dispatch(getColumnsAction());
