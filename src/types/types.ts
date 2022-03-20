@@ -17,7 +17,8 @@ export type UserProps = {
 export type ColumnType = {
   id: number;
   title: string;
-  description: string;
+  description?: string;
+  userId: number;
 };
 // --------------------- RESPONSE TYPES---------------------
 export type AuthSignUpResponse = {

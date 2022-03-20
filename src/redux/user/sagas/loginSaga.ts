@@ -1,5 +1,5 @@
 import {AxiosResponse} from 'axios';
-import {loginUser} from './../../../api/authApi';
+import {loginUser} from '../../../api/api';
 import {call, put, takeEvery} from '@redux-saga/core/effects';
 import {AuthSignInResponse, LoginUserActionType} from '../../../types/types';
 import {loading, login} from '../userSlice';

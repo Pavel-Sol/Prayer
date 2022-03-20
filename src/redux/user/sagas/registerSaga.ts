@@ -1,11 +1,7 @@
 import {call, put, takeEvery} from '@redux-saga/core/effects';
 import {AxiosResponse} from 'axios';
-import {registerUser} from '../../../api/authApi';
-import {
-  AuthSignInResponse,
-  AuthSignUpResponse,
-  RegisterUserActionType,
-} from '../../../types/types';
+import {registerUser} from '../../../api/api';
+import {AuthSignInResponse, RegisterUserActionType} from '../../../types/types';
 import {registerUserAction} from '../../actions';
 
 function* signUpWorkerSaga(action: RegisterUserActionType) {
