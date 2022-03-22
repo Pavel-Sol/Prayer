@@ -15,13 +15,15 @@ import {logout} from '../../../redux/user/userSlice';
 import {localStorage} from '../../../services/localStorage';
 import {getColumnsAction} from '../../../redux/column/actions';
 import AddIcon from '../../icons/AddIcon';
+import {selectColumns} from '../../../redux/column/selectors';
+import {selectToken} from '../../../redux/user/selectors';
 
 type MyDescScreenProps = NativeStackScreenProps<RootStackParams, 'MyDesc'>;
 
 const MyDescScreen = ({navigation}: MyDescScreenProps) => {
-  const token = useSelector((state: RootState) => state.user.userToken);
+  const token = useSelector(selectToken);
   const dispatch = useDispatch();
-  const columns = useSelector((state: RootState) => state.column.columns);
+  const columns = useSelector(selectColumns);
 
   useLayoutEffect(() => {
     navigation.setOptions({

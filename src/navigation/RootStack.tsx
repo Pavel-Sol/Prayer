@@ -5,10 +5,10 @@ import {AuthScreen} from '../views/screens/AuthScreen';
 import {MyDescScreen} from '../views/screens/MyDescScreen';
 import {PrayersScreen} from './../views/screens/PrayersScreen';
 import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../redux/store';
 import {localStorage} from '../services/localStorage';
 import {loading, login} from '../redux/user/userSlice';
 import {ColumnType} from '../types/types';
+import { selectToken } from '../redux/user/selectors';
 
 export type RootStackParams = {
   Auth: undefined;
@@ -20,7 +20,7 @@ const Stack = createNativeStackNavigator<RootStackParams>();
 
 const RootStack = () => {
   const dispatch = useDispatch();
-  const token = useSelector((state: RootState) => state.user.userToken);
+  const token = useSelector(selectToken);
 
   useEffect(() => {
     dispatch(loading(true));
