@@ -1,5 +1,12 @@
-import React, {useEffect} from 'react';
-import {View, Text, Button, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useEffect, useLayoutEffect} from 'react';
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParams} from '../../../navigation/RootStack';
 import {useDispatch, useSelector} from 'react-redux';
@@ -7,14 +14,24 @@ import {RootState} from '../../../redux/store';
 import {logout} from '../../../redux/user/userSlice';
 import {localStorage} from '../../../services/localStorage';
 import {getColumnsAction} from '../../../redux/column/actions';
+import AddIcon from '../../icons/AddIcon';
 
 type MyDescScreenProps = NativeStackScreenProps<RootStackParams, 'MyDesc'>;
 
 const MyDescScreen = ({navigation}: MyDescScreenProps) => {
   const token = useSelector((state: RootState) => state.user.userToken);
   const dispatch = useDispatch();
-
   const columns = useSelector((state: RootState) => state.column.columns);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity onPress={() => Alert.alert('This is a Add func')}>
+          <AddIcon />
+        </TouchableOpacity>
+      ),
+    });
+  }, []);
 
   useEffect(() => {
     dispatch(getColumnsAction());
