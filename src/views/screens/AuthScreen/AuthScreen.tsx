@@ -4,7 +4,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParams} from '../../../navigation/RootStack';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../../redux/store';
-import {loginUserAction, registerUserAction} from '../../../redux/actions';
+import {loginUserAction, registerUserAction} from '../../../redux/user/actions';
 import {Loader} from '../../UIcomponents/Loader';
 import {Input} from '../../UIcomponents/Input';
 import {Button} from './../../UIcomponents/Button';

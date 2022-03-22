@@ -9,7 +9,7 @@ function* fetchPrayersSaga() {
   try {
     const response: AxiosResponse<PrayerType[]> = yield call(getPrayersApi);
 
-    console.log('fetchPrayersSaga response ', response.data);
+    // console.log('fetchPrayersSaga response ', response.data);
     yield put(setPrayers({prayers: response.data}));
   } catch (error) {
     console.log(error);

@@ -3,7 +3,7 @@ import {loginUserApi} from '../../../api/api';
 import {call, put, takeEvery} from '@redux-saga/core/effects';
 import {AuthSignInResponse, LoginUserActionType} from '../../../types/types';
 import {loading, login} from '../userSlice';
-import {loginUserAction} from '../../actions';
+import {loginUserAction} from '../actions';
 import {localStorage} from '../../../services/localStorage';
 
 function* signInWorkerSaga(action: LoginUserActionType) {
