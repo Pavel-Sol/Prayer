@@ -58,13 +58,7 @@ const RootStack = () => {
                 ),
               })}
             />
-            <Stack.Screen
-              name="Prayers"
-              component={PrayersScreen}
-              options={() => ({
-                title: 'Prayers',
-              })}
-            />
+            <Stack.Screen name="Prayers" component={PrayersScreen} />
           </>
         ) : (
           <Stack.Screen
