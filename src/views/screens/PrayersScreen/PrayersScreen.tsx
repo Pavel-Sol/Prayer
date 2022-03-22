@@ -4,12 +4,17 @@ import {View, StyleSheet, Text, TouchableOpacity, Alert} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParams} from '../../../navigation/RootStack';
 import Settings from '../../icons/Settings';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {getPrayersAction} from '../../../redux/prayer/actions';
+import {selectPrayers} from '../../../redux/prayer/selectors';
 
 type MyDescScreenProps = NativeStackScreenProps<RootStackParams, 'Prayers'>;
 const PrayersScreen = ({navigation, route}: MyDescScreenProps) => {
   const dispatch = useDispatch();
+  const currentColumnId = route.params.columnInfo.id;
+  const prayers = useSelector(selectPrayers(currentColumnId));
+
+  // console.log('prayers ', prayers);
 
   useLayoutEffect(() => {
     navigation.setOptions({
