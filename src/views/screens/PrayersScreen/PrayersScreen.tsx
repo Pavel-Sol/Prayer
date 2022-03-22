@@ -1,12 +1,16 @@
-import React, {useLayoutEffect} from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import {View, StyleSheet, Text, TouchableOpacity, Alert} from 'react-native';
 
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParams} from '../../../navigation/RootStack';
 import Settings from '../../icons/Settings';
+import {useDispatch} from 'react-redux';
+import {getPrayersAction} from '../../../redux/prayer/actions';
 
 type MyDescScreenProps = NativeStackScreenProps<RootStackParams, 'Prayers'>;
 const PrayersScreen = ({navigation, route}: MyDescScreenProps) => {
+  const dispatch = useDispatch();
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShadowVisible: false,
@@ -18,6 +22,11 @@ const PrayersScreen = ({navigation, route}: MyDescScreenProps) => {
       ),
     });
   }, []);
+
+  useEffect(() => {
+    dispatch(getPrayersAction());
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text>PrayersScreen!!!!!!!!</Text>

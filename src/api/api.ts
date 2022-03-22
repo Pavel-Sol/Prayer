@@ -16,3 +16,7 @@ export const registerUserApi = (user: UserProps) => {
 export const getColumnsApi = () => {
   return commonInstance.get('columns');
 };
+
+export const getPrayersApi = () => {
+  return commonInstance.get('prayers');
+};

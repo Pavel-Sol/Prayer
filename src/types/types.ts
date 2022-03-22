@@ -20,6 +20,24 @@ export type ColumnType = {
   description?: string;
   userId: number;
 };
+
+export type PrayerType = {
+  id: number;
+  title: string;
+  description: string;
+  checked: boolean;
+  columnId: number;
+  commentsIds: CommentType[];
+};
+
+export type CommentType = {
+  id: number;
+  body: string;
+  created: string;
+  prayerId: number;
+  userId: number;
+};
+
 // --------------------- RESPONSE TYPES---------------------
 export type AuthSignUpResponse = {
   email: string;
