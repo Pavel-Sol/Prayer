@@ -10,7 +10,6 @@ import {
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParams} from '../../../navigation/RootStack';
 import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../../redux/store';
 import {logout} from '../../../redux/user/userSlice';
 import {localStorage} from '../../../services/localStorage';
 import {getColumnsAction} from '../../../redux/column/actions';
