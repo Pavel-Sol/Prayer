@@ -1,6 +1,5 @@
-import React, {useEffect, useLayoutEffect} from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {View, StyleSheet, Text, TouchableOpacity, Alert} from 'react-native';
-
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParams} from '../../../navigation/RootStack';
 import Settings from '../../icons/Settings';
@@ -8,11 +7,21 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getPrayersAction} from '../../../redux/prayer/actions';
 import {selectPrayers} from '../../../redux/prayer/selectors';
 
+import SelectController from './components/SelectController';
+import AddPrayerForm from './components/AddPrayerForm';
+
 type MyDescScreenProps = NativeStackScreenProps<RootStackParams, 'Prayers'>;
 const PrayersScreen = ({navigation, route}: MyDescScreenProps) => {
   const dispatch = useDispatch();
   const currentColumnId = route.params.columnInfo.id;
   const prayers = useSelector(selectPrayers(currentColumnId));
+  const [prayersMode, setPrayersMode] = useState<'MY_PRAYERS' | 'SUBSCRIBED'>(
+    'MY_PRAYERS',
+  );
+
+  const selectPrayersMode = (mode: 'MY_PRAYERS' | 'SUBSCRIBED') => {
+    setPrayersMode(mode);
+  };
 
   // console.log('prayers ', prayers);
 
@@ -33,10 +42,17 @@ const PrayersScreen = ({navigation, route}: MyDescScreenProps) => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text>PrayersScreen!!!!!!!!</Text>
-      <Text> инфа по колонке: {route.params.columnInfo.title}</Text>
-    </View>
+    <>
+      <SelectController
+        OnSelectPrayersMode={selectPrayersMode}
+        mode={prayersMode}
+      />
+      <View style={styles.container}>
+        {prayersMode === 'MY_PRAYERS' && <AddPrayerForm />}
+        <Text>PrayersScreen121212</Text>
+        <Text> инфа по колонке: {route.params.columnInfo.title}</Text>
+      </View>
+    </>
   );
 };
 
