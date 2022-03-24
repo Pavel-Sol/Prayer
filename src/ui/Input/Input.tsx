@@ -1,12 +1,8 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  TextInputProps,
-} from 'react-native';
+import {TextInputProps} from 'react-native';
+
 import AddIcon from '../../icons/AddIcon/AddIcon';
+import {AddBtn, Container, StyledInput} from './style';
 
 type InputPropsType = {
   isIconLeft?: boolean;
@@ -15,37 +11,15 @@ type InputPropsType = {
 
 const Input: React.FC<InputPropsType> = props => {
   return (
-    <View style={styles.container}>
+    <Container>
       {props.isIconLeft ? (
-        <TouchableOpacity style={styles.addBtn} onPress={props.onIconPress}>
+        <AddBtn onPress={props.onIconPress}>
           <AddIcon />
-        </TouchableOpacity>
+        </AddBtn>
       ) : null}
-      <TextInput {...props} style={styles.input} />
-    </View>
+      <StyledInput {...props} />
+    </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    width: '100%',
-    height: 50,
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: '#E5E5E5',
-    paddingHorizontal: 5,
-    marginBottom: 16,
-  },
-  input: {
-    fontSize: 17,
-  },
-  addBtn: {
-    marginHorizontal: 10,
-  },
-});
 
 export default Input;

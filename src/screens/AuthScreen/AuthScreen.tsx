@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {RootStackParams} from '../../navigation/RootStack/RootStack';
@@ -9,6 +9,7 @@ import {Loader} from '../../ui/Loader';
 import {Input} from '../../ui/Input';
 import {Button} from '../../ui/Button';
 import {selectUserLoading} from '../../store/selectors';
+import {BtnWrap, Container} from './style';
 
 type AuthScreenProps = NativeStackScreenProps<RootStackParams, 'Auth'>;
 const AuthScreen = ({navigation}: AuthScreenProps) => {
@@ -41,7 +42,7 @@ const AuthScreen = ({navigation}: AuthScreenProps) => {
   }
 
   return (
-    <View style={styles.container}>
+    <Container>
       <View>
         <Text>LOGIN-BLOCK</Text>
         <View>
@@ -58,9 +59,9 @@ const AuthScreen = ({navigation}: AuthScreenProps) => {
           />
         </View>
 
-        <View style={styles.btnWrap}>
+        <BtnWrap>
           <Button onPress={handleSubmitLogin}>--- LOGIN ---</Button>
-        </View>
+        </BtnWrap>
       </View>
       {/* ----------------------------- */}
       <View>
@@ -84,26 +85,12 @@ const AuthScreen = ({navigation}: AuthScreenProps) => {
             onChangeText={setPasswordSignUp}
           />
         </View>
-        <View style={styles.btnWrap}>
+        <BtnWrap>
           <Button onPress={handleSubmitSignUp}>--- SIGN-UP ---</Button>
-        </View>
+        </BtnWrap>
       </View>
-    </View>
+    </Container>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    height: '100%',
-    backgroundColor: '#FFFFFF',
-    paddingHorizontal: 15,
-    paddingVertical: 15,
-  },
-  btnWrap: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-});
 export default AuthScreen;

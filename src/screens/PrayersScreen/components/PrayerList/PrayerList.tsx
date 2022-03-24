@@ -1,8 +1,9 @@
 import React from 'react';
-import {Text, View, StyleSheet, TouchableHighlight} from 'react-native';
+import {Text, TouchableHighlight} from 'react-native';
 import {SwipeListView} from 'react-native-swipe-list-view';
 
 import {PrayerType} from '../../../../types/types';
+import {RowBack, RowFront} from './style';
 type PraterListPropsType = {
   data: PrayerType[];
 };
@@ -15,37 +16,23 @@ const PrayerList: React.FC<PraterListPropsType> = ({data}) => {
       disableRightSwipe
       renderItem={(data, rowMap) => (
         <TouchableHighlight>
-          <View style={styles.rowFront}>
+          <RowFront>
             <Text>{data.item.title}</Text>
-          </View>
+          </RowFront>
         </TouchableHighlight>
       )}
       renderHiddenItem={(data, rowMap) => (
-        <View style={styles.rowBack}>
+        <RowBack>
           <TouchableHighlight
             onPress={() => console.log('delete ', data.item.id)}>
             <Text>delete</Text>
           </TouchableHighlight>
-        </View>
+        </RowBack>
       )}
       leftOpenValue={75}
       rightOpenValue={-75}
     />
   );
 };
-
-const styles = StyleSheet.create({
-  rowFront: {
-    backgroundColor: 'green',
-    height: 40,
-  },
-  rowBack: {
-    backgroundColor: 'red',
-    height: 40,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-});
 
 export default PrayerList;

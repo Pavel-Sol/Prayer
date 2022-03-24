@@ -1,6 +1,6 @@
 import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {View, StyleSheet, TouchableOpacity, Alert} from 'react-native';
+import {TouchableOpacity, Alert} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {RootStackParams} from '../../navigation/RootStack/RootStack';
@@ -10,6 +10,7 @@ import {selectPrayers} from '../../store/selectors';
 import {SelectController} from './components/SelectController';
 import {AddPrayerForm} from './components/AddPrayerForm';
 import {PrayerList} from './components/PrayerList';
+import {Container} from './style';
 
 type PrayersScreenProps = NativeStackScreenProps<RootStackParams, 'Prayers'>;
 const PrayersScreen = ({navigation, route}: PrayersScreenProps) => {
@@ -48,22 +49,13 @@ const PrayersScreen = ({navigation, route}: PrayersScreenProps) => {
         OnSelectPrayersMode={selectPrayersMode}
         mode={prayersMode}
       />
-      <View style={styles.container}>
+      <Container>
         {prayersMode === 'MY_PRAYERS' && <AddPrayerForm />}
         <PrayerList data={prayers} />
         {/* <Text> инфа по колонке: {route.params.columnInfo.title}</Text> */}
-      </View>
+      </Container>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    height: '100%',
-    backgroundColor: '#FFFFFF',
-    paddingHorizontal: 15,
-    paddingVertical: 15,
-  },
-});
 
 export default PrayersScreen;
