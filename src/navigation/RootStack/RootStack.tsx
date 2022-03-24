@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {AuthScreen} from '../../screens/AuthScreen';
+import {LoginScreen} from '../../screens/LoginScreen';
+import {RegisterScreen} from '../../screens/RegisterScreen';
 import {MyDescScreen} from '../../screens/MyDescScreen';
 import {PrayersScreen} from '../../screens/PrayersScreen';
 import {useDispatch, useSelector} from 'react-redux';
@@ -11,7 +12,8 @@ import {ColumnType} from '../../types/types';
 import {selectToken} from '../../store/selectors';
 
 export type RootStackParams = {
-  Auth: undefined;
+  Login: undefined;
+  Register: undefined;
   MyDesc: undefined;
   Prayers: {columnInfo: ColumnType};
 };
@@ -47,13 +49,10 @@ const RootStack = () => {
             <Stack.Screen name="Prayers" component={PrayersScreen} />
           </>
         ) : (
-          <Stack.Screen
-            name="Auth"
-            component={AuthScreen}
-            options={({navigation, route}) => ({
-              title: 'Auth',
-            })}
-          />
+          <>
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Register" component={RegisterScreen} />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>
