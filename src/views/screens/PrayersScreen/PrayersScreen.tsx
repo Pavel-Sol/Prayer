@@ -9,9 +9,10 @@ import {selectPrayers} from '../../../redux/prayer/selectors';
 
 import SelectController from './components/SelectController';
 import AddPrayerForm from './components/AddPrayerForm';
+import PrayerList from './components/PrayerList';
 
-type MyDescScreenProps = NativeStackScreenProps<RootStackParams, 'Prayers'>;
-const PrayersScreen = ({navigation, route}: MyDescScreenProps) => {
+type PrayersScreenProps = NativeStackScreenProps<RootStackParams, 'Prayers'>;
+const PrayersScreen = ({navigation, route}: PrayersScreenProps) => {
   const dispatch = useDispatch();
   const currentColumnId = route.params.columnInfo.id;
   const prayers = useSelector(selectPrayers(currentColumnId));
@@ -49,8 +50,8 @@ const PrayersScreen = ({navigation, route}: MyDescScreenProps) => {
       />
       <View style={styles.container}>
         {prayersMode === 'MY_PRAYERS' && <AddPrayerForm />}
-        <Text>PrayersScreen121212</Text>
-        <Text> инфа по колонке: {route.params.columnInfo.title}</Text>
+        <PrayerList data={prayers} />
+        {/* <Text> инфа по колонке: {route.params.columnInfo.title}</Text> */}
       </View>
     </>
   );

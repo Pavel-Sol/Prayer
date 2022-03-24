@@ -1,10 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  NativeSyntheticEvent,
-  TextInputChangeEventData,
-} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {Input} from '../../../UIcomponents/Input';
 
 const AddPrayerForm = () => {
