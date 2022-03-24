@@ -1,8 +1,8 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import store from './redux/store';
+import store from './store/store';
 
-import RootStack from './navigation/RootStack';
+import RootStack from './navigation/RootStack/RootStack';
 
 const App = () => {
   return (
