@@ -1,17 +1,17 @@
 import React from 'react';
 import {BtnText, BtnWrapper} from './style';
 
-type ButtonPropsType = {
+type MainBtnPropsType = {
   children: React.ReactNode;
   onPress?: () => void;
   disabled?: boolean;
 };
 
-const Button: React.FC<ButtonPropsType> = ({
+const MainBtn: React.FC<MainBtnPropsType> = ({
   children,
   onPress,
   disabled,
-}: ButtonPropsType) => {
+}: MainBtnPropsType) => {
   return (
     <BtnWrapper onPress={onPress} disabled={disabled}>
       <BtnText>{children}</BtnText>
@@ -19,4 +19,4 @@ const Button: React.FC<ButtonPropsType> = ({
   );
 };
 
-export default Button;
+export default MainBtn;

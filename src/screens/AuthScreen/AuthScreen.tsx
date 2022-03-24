@@ -7,7 +7,7 @@ import {RootStackParams} from '../../navigation/RootStack/RootStack';
 import {loginUserAction, registerUserAction} from './../../store/actions';
 import {Loader} from '../../ui/Loader';
 import {Input} from '../../ui/Input';
-import {Button} from '../../ui/Button';
+import {MainBtn} from '../../ui/MainBtn';
 import {selectUserLoading} from '../../store/selectors';
 import {BtnWrap, Container} from './style';
 
@@ -15,6 +15,7 @@ type AuthScreenProps = NativeStackScreenProps<RootStackParams, 'Auth'>;
 const AuthScreen = ({navigation}: AuthScreenProps) => {
   const isLoading = useSelector(selectUserLoading);
   const dispatch = useDispatch();
+  const [mode, setMode] = useState<'LOGIN' | 'SIGN_UP'>('LOGIN');
 
   const [emailLogin, setEmailLogin] = useState('');
   const [passwordLogin, setPasswordLogin] = useState('');
@@ -35,6 +36,7 @@ const AuthScreen = ({navigation}: AuthScreenProps) => {
         name: nameSignUp,
       }),
     );
+    setMode('LOGIN');
   };
 
   if (isLoading) {
@@ -43,52 +45,63 @@ const AuthScreen = ({navigation}: AuthScreenProps) => {
 
   return (
     <Container>
-      <View>
-        <Text>LOGIN-BLOCK</Text>
+      {mode === 'LOGIN' ? (
         <View>
-          <Input
-            placeholder="введите email"
-            value={emailLogin}
-            onChangeText={setEmailLogin}
-          />
+          <Text>LOGIN-BLOCK</Text>
+          <View>
+            <Input
+              placeholder="введите email"
+              value={emailLogin}
+              onChangeText={setEmailLogin}
+            />
 
-          <Input
-            placeholder="введите пароль"
-            value={passwordLogin}
-            onChangeText={setPasswordLogin}
-          />
+            <Input
+              placeholder="введите пароль"
+              value={passwordLogin}
+              onChangeText={setPasswordLogin}
+            />
+          </View>
+
+          <BtnWrap>
+            <MainBtn onPress={handleSubmitLogin}>--- LOGIN ---</MainBtn>
+          </BtnWrap>
+          <BtnWrap>
+            <MainBtn onPress={() => setMode('SIGN_UP')}>
+              SWITCH TO SIGNUP
+            </MainBtn>
+          </BtnWrap>
         </View>
+      ) : (
+        <View>
+          <Text>SIGNUP-BLOCK</Text>
+          <View>
+            <Input
+              placeholder="введите email"
+              value={emailSignUp}
+              onChangeText={setEmailSignUp}
+            />
 
-        <BtnWrap>
-          <Button onPress={handleSubmitLogin}>--- LOGIN ---</Button>
-        </BtnWrap>
-      </View>
+            <Input
+              placeholder="введите имя"
+              value={nameSignUp}
+              onChangeText={setNameSignUp}
+            />
+
+            <Input
+              placeholder="введите пароль"
+              value={passwordSignUp}
+              onChangeText={setPasswordSignUp}
+            />
+          </View>
+          <BtnWrap>
+            <MainBtn onPress={handleSubmitSignUp}>--- SIGN-UP ---</MainBtn>
+          </BtnWrap>
+          <BtnWrap>
+            <MainBtn onPress={() => setMode('LOGIN')}>SWITCH TO LOGIN</MainBtn>
+          </BtnWrap>
+        </View>
+      )}
       {/* ----------------------------- */}
-      <View>
-        <Text>SIGNUP-BLOCK</Text>
-        <View>
-          <Input
-            placeholder="введите email"
-            value={emailSignUp}
-            onChangeText={setEmailSignUp}
-          />
-
-          <Input
-            placeholder="введите имя"
-            value={nameSignUp}
-            onChangeText={setNameSignUp}
-          />
-
-          <Input
-            placeholder="введите пароль"
-            value={passwordSignUp}
-            onChangeText={setPasswordSignUp}
-          />
-        </View>
-        <BtnWrap>
-          <Button onPress={handleSubmitSignUp}>--- SIGN-UP ---</Button>
-        </BtnWrap>
-      </View>
     </Container>
   );
 };

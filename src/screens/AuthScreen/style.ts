@@ -13,4 +13,5 @@ export const BtnWrap = styled(View)`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-vertical: 10px;
 `;
