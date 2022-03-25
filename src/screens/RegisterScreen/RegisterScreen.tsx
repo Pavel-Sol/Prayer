@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {View, Text, Button} from 'react-native';
+import {View, Button} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {Form, Field} from 'react-final-form';
 
 import {RootStackParams} from '../../navigation/RootStack/RootStack';
-import {loginUserAction, registerUserAction} from './../../store/actions';
+import {registerUserAction} from './../../store/actions';
 import {Loader} from '../../ui/Loader';
 import {Input} from '../../ui/Input';
 import {MainBtn} from '../../ui/MainBtn';
@@ -16,16 +17,18 @@ const RegisterScreen = ({navigation}: RegisterScreenProps) => {
   const isLoading = useSelector(selectUserLoading);
   const dispatch = useDispatch();
 
-  const [emailSignUp, setEmailSignUp] = useState('');
-  const [passwordSignUp, setPasswordSignUp] = useState('');
-  const [nameSignUp, setNameSignUp] = useState('');
+  type RegisterValuesType = {
+    email: string;
+    name: string;
+    password: string;
+  };
 
-  const handleSubmitSignUp = () => {
+  const handleSubmitSignUp = (values: RegisterValuesType) => {
     dispatch(
       registerUserAction({
-        email: emailSignUp,
-        password: passwordSignUp,
-        name: nameSignUp,
+        email: values.email,
+        password: values.password,
+        name: values.name,
       }),
     );
     navigation.push('Login');
@@ -37,37 +40,60 @@ const RegisterScreen = ({navigation}: RegisterScreenProps) => {
 
   return (
     <Container>
-      <View>
-        <Text>SIGNUP-BLOCK</Text>
-        <View>
-          <Input
-            placeholder="введите email"
-            value={emailSignUp}
-            onChangeText={setEmailSignUp}
-          />
+      <Form
+        onSubmit={handleSubmitSignUp}
+        render={({form, values}) => (
+          <>
+            <Field name="email">
+              {({input}) => (
+                <View>
+                  <Input
+                    onChangeText={input.onChange}
+                    value={input.value}
+                    placeholder="введите email"
+                  />
+                </View>
+              )}
+            </Field>
+            <Field name="name">
+              {({input}) => (
+                <View>
+                  <Input
+                    onChangeText={input.onChange}
+                    value={input.value}
+                    placeholder="введите имя"
+                  />
+                </View>
+              )}
+            </Field>
+            <Field name="password">
+              {({input}) => (
+                <View>
+                  <Input
+                    onChangeText={input.onChange}
+                    value={input.value}
+                    placeholder="введите пароль"
+                  />
+                </View>
+              )}
+            </Field>
+            <BtnWrap>
+              <MainBtn
+                onPress={form.submit}
+                disabled={!values.email || !values.password || !values.name}>
+                --- SIGN-UP ---
+              </MainBtn>
+            </BtnWrap>
+          </>
+        )}
+      />
 
-          <Input
-            placeholder="введите имя"
-            value={nameSignUp}
-            onChangeText={setNameSignUp}
-          />
-
-          <Input
-            placeholder="введите пароль"
-            value={passwordSignUp}
-            onChangeText={setPasswordSignUp}
-          />
-        </View>
-        <BtnWrap>
-          <MainBtn onPress={handleSubmitSignUp}>--- SIGN-UP ---</MainBtn>
-        </BtnWrap>
-        <BtnWrap>
-          <Button
-            onPress={() => navigation.push('Login')}
-            title="SWITCH TO LOGIN"
-          />
-        </BtnWrap>
-      </View>
+      <BtnWrap>
+        <Button
+          onPress={() => navigation.push('Login')}
+          title="SWITCH TO LOGIN"
+        />
+      </BtnWrap>
     </Container>
   );
 };

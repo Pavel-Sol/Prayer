@@ -17,6 +17,7 @@ export const Container = styled(View)`
 
 export const StyledInput = styled(TextInput)`
   font-size: 17px;
+  min-width: 80%;
 `;
 
 export const AddBtn = styled(TouchableOpacity)`

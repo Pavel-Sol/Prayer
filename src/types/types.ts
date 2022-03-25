@@ -1,4 +1,4 @@
-import {loginUserAction, registerUserAction} from '../redux/user/actions';
+import {loginUserAction, registerUserAction} from './../store/actions';
 
 export type UserType = {
   email: string;
