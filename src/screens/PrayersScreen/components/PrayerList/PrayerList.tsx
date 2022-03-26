@@ -9,8 +9,9 @@ import {FrontItem} from '../FrontItem';
 import {RowBack, RowBackText} from './style';
 type PraterListPropsType = {
   prayerList: PrayerType[];
+  isChecked: boolean;
 };
-const PrayerList: React.FC<PraterListPropsType> = ({prayerList}) => {
+const PrayerList: React.FC<PraterListPropsType> = ({prayerList, isChecked}) => {
   // console.log('prayerList', prayerList);
   const dispatch = useDispatch();
   const handleDelPrayer = (id: number) => {
@@ -27,7 +28,7 @@ const PrayerList: React.FC<PraterListPropsType> = ({prayerList}) => {
                 <RowBackText>delete</RowBackText>
               </RowBack>
             </TouchableHighlight>
-            <FrontItem data={el} />
+            <FrontItem data={el} isChecked={isChecked} />
           </SwipeRow>
         );
       })}

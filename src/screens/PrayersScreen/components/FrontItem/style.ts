@@ -25,7 +25,10 @@ export const RowFrontTitleWrapper = styled(TouchableOpacity)`
   flex: 1 0 auto;
 `;
 
-export const RowFrontTitle = styled(Text)`
+export const RowFrontTitle = styled(Text)<{
+  isChecked?: boolean;
+}>`
+  ${props => (props.isChecked ? `text-decoration: line-through` : `none`)};
   font-size: 17px;
   color: #514d47;
 `;

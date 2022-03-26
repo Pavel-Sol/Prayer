@@ -16,9 +16,10 @@ import {RowFront} from './style';
 
 type FrontItemPropsType = {
   data: PrayerType;
+  isChecked: boolean;
 };
 
-const FrontItem: React.FC<FrontItemPropsType> = ({data}) => {
+const FrontItem: React.FC<FrontItemPropsType> = ({data, isChecked}) => {
   // console.log('data!!!', data);
   const dispatch = useDispatch();
 
@@ -49,7 +50,7 @@ const FrontItem: React.FC<FrontItemPropsType> = ({data}) => {
 
         <RowFrontTitleWrapper
           onPress={() => console.log('переход к DetailScreen')}>
-          <RowFrontTitle>{data.title}</RowFrontTitle>
+          <RowFrontTitle isChecked={isChecked}>{data.title}</RowFrontTitle>
         </RowFrontTitleWrapper>
         <IconWrapper>
           <User />

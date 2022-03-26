@@ -62,7 +62,7 @@ const PrayersScreen = ({navigation, route}: PrayersScreenProps) => {
           <AddPrayerForm currentColumnId={currentColumnId} />
         )}
         <ScrollView>
-          <PrayerList prayerList={nonCheckedPrayers} />
+          <PrayerList prayerList={nonCheckedPrayers} isChecked={false} />
           {prayers.length > 0 && (
             <BtnWrapper>
               <MainBtn onPress={toggleShowCheckedPrayers}>
@@ -72,7 +72,9 @@ const PrayersScreen = ({navigation, route}: PrayersScreenProps) => {
               </MainBtn>
             </BtnWrapper>
           )}
-          {isShowCheckedPrayers && <PrayerList prayerList={checkedPrayers} />}
+          {isShowCheckedPrayers && (
+            <PrayerList prayerList={checkedPrayers} isChecked={true} />
+          )}
         </ScrollView>
       </Container>
     </SafeAreaView>
