@@ -1,3 +1,4 @@
+import {CreatePrayerType, PrayerType} from '../../../types/types';
 import {commonInstance, authInstance} from './instance';
 
 type UserProps = {
@@ -19,4 +20,9 @@ export const getColumnsApi = () => {
 
 export const getPrayersApi = () => {
   return commonInstance.get('prayers');
+};
+
+export const addPrayerApi = (prayer: CreatePrayerType) => {
+  // console.log('prayer ', prayer);
+  return commonInstance.post('prayers', prayer);
 };

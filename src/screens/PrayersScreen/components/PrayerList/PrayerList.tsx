@@ -1,8 +1,7 @@
 import React from 'react';
-import {Text, TouchableHighlight} from 'react-native';
+import {TouchableHighlight, SafeAreaView} from 'react-native';
 import {SwipeListView} from 'react-native-swipe-list-view';
 
-// import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import {PrayerType} from '../../../../types/types';
 import {FrontItem} from '../FrontItem';
 import {RowBack, RowBackText} from './style';

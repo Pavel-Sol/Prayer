@@ -3,4 +3,4 @@ export {registerUserAction} from './userActions';
 
 export {getColumnsAction} from './columnActions';
 
-export {getPrayersAction} from './prayerActions';
+export {getPrayersAction, createPrayerAction} from './prayerActions';

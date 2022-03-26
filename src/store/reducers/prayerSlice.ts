@@ -14,10 +14,13 @@ const prayerSlice = createSlice({
   initialState,
   reducers: {
     setPrayers(state, {payload}: PayloadAction<{prayers: PrayerType[]}>) {
-      state.prayers = payload.prayers
+      state.prayers = payload.prayers;
+    },
+    addPrayer(state, {payload}: PayloadAction<PrayerType>) {
+      state.prayers.push(payload);
     },
   },
 });
 
-export const {setPrayers} = prayerSlice.actions;
+export const {setPrayers, addPrayer} = prayerSlice.actions;
 export default prayerSlice.reducer;

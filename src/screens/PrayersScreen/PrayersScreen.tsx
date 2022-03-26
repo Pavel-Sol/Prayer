@@ -1,6 +1,6 @@
 import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {TouchableOpacity, Alert} from 'react-native';
+import {TouchableOpacity, Alert, SafeAreaView} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {RootStackParams} from '../../navigation/RootStack/RootStack';
@@ -44,17 +44,19 @@ const PrayersScreen = ({navigation, route}: PrayersScreenProps) => {
   }, []);
 
   return (
-    <>
+    <SafeAreaView>
       <SelectController
         OnSelectPrayersMode={selectPrayersMode}
         mode={prayersMode}
       />
       <Container>
-        {prayersMode === 'MY_PRAYERS' && <AddPrayerForm />}
+        {prayersMode === 'MY_PRAYERS' && (
+          <AddPrayerForm currentColumnId={currentColumnId} />
+        )}
         <PrayerList prayerList={prayers} />
         {/* <Text> инфа по колонке: {route.params.columnInfo.title}</Text> */}
       </Container>
-    </>
+    </SafeAreaView>
   );
 };
 
