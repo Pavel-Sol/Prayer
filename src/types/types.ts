@@ -1,5 +1,5 @@
 import {loginUserAction, registerUserAction} from './../store/actions';
-import {createPrayerAction} from './../store/actions';
+import {createPrayerAction, deletePrayerAction} from './../store/actions';
 
 export type UserType = {
   email: string;
@@ -67,3 +67,4 @@ export type AuthSignInResponse = {
 export type LoginUserActionType = ReturnType<typeof loginUserAction>;
 export type RegisterUserActionType = ReturnType<typeof registerUserAction>;
 export type CreatePrayerActionType = ReturnType<typeof createPrayerAction>;
+export type DeletePrayerActionType = ReturnType<typeof deletePrayerAction>;

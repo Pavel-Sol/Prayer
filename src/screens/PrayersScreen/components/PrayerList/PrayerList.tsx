@@ -1,6 +1,8 @@
 import React from 'react';
-import {TouchableHighlight, SafeAreaView} from 'react-native';
+import {TouchableHighlight} from 'react-native';
 import {SwipeListView} from 'react-native-swipe-list-view';
+import {useDispatch} from 'react-redux';
+import {deletePrayerAction} from '../../../../store/actions';
 
 import {PrayerType} from '../../../../types/types';
 import {FrontItem} from '../FrontItem';
@@ -10,6 +12,10 @@ type PraterListPropsType = {
 };
 const PrayerList: React.FC<PraterListPropsType> = ({prayerList}) => {
   // console.log('prayerList', prayerList);
+  const dispatch = useDispatch();
+  const handleDelPrayer = (id: number) => {
+    dispatch(deletePrayerAction(id));
+  };
   return (
     <SwipeListView
       useFlatList
@@ -17,8 +23,7 @@ const PrayerList: React.FC<PraterListPropsType> = ({prayerList}) => {
       disableRightSwipe
       renderItem={(data, rowMap) => <FrontItem data={data.item} />}
       renderHiddenItem={(data, rowMap) => (
-        <TouchableHighlight
-          onPress={() => console.log('delete ', data.item.id)}>
+        <TouchableHighlight onPress={() => handleDelPrayer(data.item.id)}>
           <RowBack>
             <RowBackText>delete</RowBackText>
           </RowBack>

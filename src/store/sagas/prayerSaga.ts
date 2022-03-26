@@ -1,10 +1,18 @@
 import {AxiosResponse} from 'axios';
 import {call, put, takeEvery} from 'redux-saga/effects';
 
-import {addPrayerApi, getPrayersApi} from '../services/api';
-import {CreatePrayerActionType, PrayerType} from '../../types/types';
-import {getPrayersAction, createPrayerAction} from './../actions';
-import {setPrayers, addPrayer} from '../reducers';
+import {addPrayerApi, getPrayersApi, deletePrayerApi} from '../services/api';
+import {
+  CreatePrayerActionType,
+  PrayerType,
+  DeletePrayerActionType,
+} from '../../types/types';
+import {
+  getPrayersAction,
+  createPrayerAction,
+  deletePrayerAction,
+} from './../actions';
+import {setPrayers, addPrayer, deletePrayer} from '../reducers';
 
 function* fetchPrayersSaga() {
   try {
@@ -28,9 +36,19 @@ function* createPrayerSaga(action: CreatePrayerActionType) {
   }
 }
 
+function* deletePrayerSaga(action: DeletePrayerActionType) {
+  try {
+    yield call(() => deletePrayerApi(action.payload.id));
+    yield put(deletePrayer(action.payload.id));
+  } catch (e: any) {
+    console.log(e.message);
+  }
+}
+
 function* prayersSaga() {
   yield takeEvery(createPrayerAction, createPrayerSaga);
   yield takeEvery(getPrayersAction, fetchPrayersSaga);
+  yield takeEvery(deletePrayerAction, deletePrayerSaga);
 }
 
 export default prayersSaga;

@@ -23,6 +23,9 @@ export const getPrayersApi = () => {
 };
 
 export const addPrayerApi = (prayer: CreatePrayerType) => {
-  // console.log('prayer ', prayer);
   return commonInstance.post('prayers', prayer);
+};
+
+export const deletePrayerApi = (prayerId: number) => {
+  return commonInstance.delete(`prayers/${prayerId}`);
 };

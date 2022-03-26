@@ -13,3 +13,11 @@ export const createPrayerAction = createAction(
     };
   },
 );
+
+export const deletePrayerAction = createAction('deletePrayer', (id: number) => {
+  return {
+    payload: {
+      id,
+    },
+  };
+});

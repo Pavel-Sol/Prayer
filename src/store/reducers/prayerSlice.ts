@@ -17,10 +17,14 @@ const prayerSlice = createSlice({
       state.prayers = payload.prayers;
     },
     addPrayer(state, {payload}: PayloadAction<PrayerType>) {
-      state.prayers.push(payload);
+      console.log('addPrayer slice', payload);
+      state.prayers = [...state.prayers, payload];
+    },
+    deletePrayer(state, {payload}: PayloadAction<number>) {
+      state.prayers = state.prayers.filter(prayer => prayer.id !== payload);
     },
   },
 });
 
-export const {setPrayers, addPrayer} = prayerSlice.actions;
+export const {setPrayers, addPrayer, deletePrayer} = prayerSlice.actions;
 export default prayerSlice.reducer;
