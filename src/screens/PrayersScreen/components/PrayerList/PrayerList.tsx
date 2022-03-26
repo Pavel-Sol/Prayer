@@ -2,35 +2,31 @@ import React from 'react';
 import {Text, TouchableHighlight} from 'react-native';
 import {SwipeListView} from 'react-native-swipe-list-view';
 
+// import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import {PrayerType} from '../../../../types/types';
-import {RowBack, RowFront} from './style';
+import {FrontItem} from '../FrontItem';
+import {RowBack, RowBackText} from './style';
 type PraterListPropsType = {
-  data: PrayerType[];
+  prayerList: PrayerType[];
 };
-const PrayerList: React.FC<PraterListPropsType> = ({data}) => {
-  // console.log(data);
+const PrayerList: React.FC<PraterListPropsType> = ({prayerList}) => {
+  // console.log('prayerList', prayerList);
   return (
     <SwipeListView
       useFlatList
-      data={data}
+      data={prayerList}
       disableRightSwipe
-      renderItem={(data, rowMap) => (
-        <TouchableHighlight>
-          <RowFront>
-            <Text>{data.item.title}</Text>
-          </RowFront>
+      renderItem={(data, rowMap) => <FrontItem data={data.item} />}
+      renderHiddenItem={(data, rowMap) => (
+        <TouchableHighlight
+          onPress={() => console.log('delete ', data.item.id)}>
+          <RowBack>
+            <RowBackText>delete</RowBackText>
+          </RowBack>
         </TouchableHighlight>
       )}
-      renderHiddenItem={(data, rowMap) => (
-        <RowBack>
-          <TouchableHighlight
-            onPress={() => console.log('delete ', data.item.id)}>
-            <Text>delete</Text>
-          </TouchableHighlight>
-        </RowBack>
-      )}
-      leftOpenValue={75}
-      rightOpenValue={-75}
+      leftOpenValue={80}
+      rightOpenValue={-80}
     />
   );
 };

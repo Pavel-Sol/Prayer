@@ -51,7 +51,7 @@ const PrayersScreen = ({navigation, route}: PrayersScreenProps) => {
       />
       <Container>
         {prayersMode === 'MY_PRAYERS' && <AddPrayerForm />}
-        <PrayerList data={prayers} />
+        <PrayerList prayerList={prayers} />
         {/* <Text> инфа по колонке: {route.params.columnInfo.title}</Text> */}
       </Container>
     </>
