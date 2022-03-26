@@ -29,3 +29,7 @@ export const addPrayerApi = (prayer: CreatePrayerType) => {
 export const deletePrayerApi = (prayerId: number) => {
   return commonInstance.delete(`prayers/${prayerId}`);
 };
+
+export const getOnePrayerApi = (prayerId: number) => {
+  return commonInstance.get(`prayers/${prayerId}`);
+};

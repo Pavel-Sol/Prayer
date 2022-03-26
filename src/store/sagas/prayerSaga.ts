@@ -1,7 +1,12 @@
 import {AxiosResponse} from 'axios';
 import {call, put, takeEvery} from 'redux-saga/effects';
 
-import {addPrayerApi, getPrayersApi, deletePrayerApi} from '../services/api';
+import {
+  addPrayerApi,
+  getPrayersApi,
+  deletePrayerApi,
+  getOnePrayerApi,
+} from '../services/api';
 import {
   CreatePrayerActionType,
   PrayerType,
@@ -12,12 +17,11 @@ import {
   createPrayerAction,
   deletePrayerAction,
 } from './../actions';
-import {setPrayers, addPrayer, deletePrayer, columnReducer} from '../reducers';
+import {setPrayers, addPrayer, deletePrayer} from '../reducers';
 
 function* fetchPrayersSaga() {
   try {
     const response: AxiosResponse<PrayerType[]> = yield call(getPrayersApi);
-    // console.log('fetchPrayersSaga response ', response.data);
     yield put(setPrayers({prayers: response.data}));
   } catch (error) {
     console.log(error);
@@ -26,15 +30,15 @@ function* fetchPrayersSaga() {
 
 function* createPrayerSaga(action: CreatePrayerActionType) {
   try {
-    const response: AxiosResponse<PrayerType> = yield call(() => {
+    const createPrayerResponse: AxiosResponse<PrayerType> = yield call(() => {
       return addPrayerApi(action.payload.prayer);
     });
-    // костыль, потому что бэк не правильный)
-    const newPrayer = {
-      ...response.data,
-      columnId: action.payload.prayer.columnId,
-    };
-    yield put(addPrayer(newPrayer));
+
+    const getOnePrayerResponse: AxiosResponse<PrayerType> = yield call(() => {
+      return getOnePrayerApi(createPrayerResponse.data.id);
+    });
+
+    yield put(addPrayer(getOnePrayerResponse.data));
   } catch (error) {
     console.log(error);
   }
