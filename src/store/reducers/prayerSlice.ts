@@ -17,8 +17,7 @@ const prayerSlice = createSlice({
       state.prayers = payload.prayers;
     },
     addPrayer(state, {payload}: PayloadAction<PrayerType>) {
-      console.log('addPrayer slice', payload);
-      state.prayers = [...state.prayers, payload];
+      state.prayers = [payload, ...state.prayers];
     },
     deletePrayer(state, {payload}: PayloadAction<number>) {
       state.prayers = state.prayers.filter(prayer => prayer.id !== payload);

@@ -12,7 +12,7 @@ import {
   createPrayerAction,
   deletePrayerAction,
 } from './../actions';
-import {setPrayers, addPrayer, deletePrayer} from '../reducers';
+import {setPrayers, addPrayer, deletePrayer, columnReducer} from '../reducers';
 
 function* fetchPrayersSaga() {
   try {
@@ -29,8 +29,12 @@ function* createPrayerSaga(action: CreatePrayerActionType) {
     const response: AxiosResponse<PrayerType> = yield call(() => {
       return addPrayerApi(action.payload.prayer);
     });
-    // console.log('createPrayerSaga response-data ', response.data);
-    yield put(addPrayer(response.data));
+    // костыль, потому что бэк не правильный)
+    const newPrayer = {
+      ...response.data,
+      columnId: action.payload.prayer.columnId,
+    };
+    yield put(addPrayer(newPrayer));
   } catch (error) {
     console.log(error);
   }
