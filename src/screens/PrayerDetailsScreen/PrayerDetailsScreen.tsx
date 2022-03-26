@@ -1,20 +1,20 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useEffect} from 'react';
-import {View, Text} from 'react-native';
+import {Text} from 'react-native';
 import {RootStackParams} from '../../navigation/RootStack/RootStack';
+import {Header} from './components/Header';
 
 type PrayerDetailsScreenProps = NativeStackScreenProps<
   RootStackParams,
   'PrayerDetails'
 >;
 const PrayerDetailsScreen = ({navigation, route}: PrayerDetailsScreenProps) => {
-  useEffect(() => {
-    console.log(route.params.prayer);
-  }, []);
+  const prayer = route.params.prayer;
   return (
-    <View>
+    <>
+      <Header title={prayer.title} />
       <Text>PrayerDetailsScreen</Text>
-    </View>
+    </>
   );
 };
 

@@ -52,6 +52,7 @@ const RootStack = () => {
             <Stack.Screen
               name="PrayerDetails"
               component={PrayerDetailsScreen}
+              options={{headerShown: false}}
             />
           </>
         ) : (
