@@ -1,6 +1,6 @@
 import React from 'react';
-import {TouchableHighlight} from 'react-native';
-import {SwipeListView} from 'react-native-swipe-list-view';
+import {TouchableHighlight, View} from 'react-native';
+import {SwipeRow} from 'react-native-swipe-list-view';
 import {useDispatch} from 'react-redux';
 import {deletePrayerAction} from '../../../../store/actions';
 
@@ -16,22 +16,22 @@ const PrayerList: React.FC<PraterListPropsType> = ({prayerList}) => {
   const handleDelPrayer = (id: number) => {
     dispatch(deletePrayerAction(id));
   };
+
   return (
-    <SwipeListView
-      useFlatList
-      data={prayerList}
-      disableRightSwipe
-      renderItem={(data, rowMap) => <FrontItem data={data.item} />}
-      renderHiddenItem={(data, rowMap) => (
-        <TouchableHighlight onPress={() => handleDelPrayer(data.item.id)}>
-          <RowBack>
-            <RowBackText>delete</RowBackText>
-          </RowBack>
-        </TouchableHighlight>
-      )}
-      leftOpenValue={80}
-      rightOpenValue={-80}
-    />
+    <View>
+      {prayerList.map(el => {
+        return (
+          <SwipeRow disableRightSwipe rightOpenValue={-80} key={el.id}>
+            <TouchableHighlight onPress={() => handleDelPrayer(el.id)}>
+              <RowBack>
+                <RowBackText>delete</RowBackText>
+              </RowBack>
+            </TouchableHighlight>
+            <FrontItem data={el} />
+          </SwipeRow>
+        );
+      })}
+    </View>
   );
 };
 

@@ -1,6 +1,6 @@
 import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {TouchableOpacity, Alert, SafeAreaView} from 'react-native';
+import {TouchableOpacity, Alert, SafeAreaView, ScrollView} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {RootStackParams} from '../../navigation/RootStack/RootStack';
@@ -17,6 +17,8 @@ const PrayersScreen = ({navigation, route}: PrayersScreenProps) => {
   const dispatch = useDispatch();
   const currentColumnId = route.params.columnInfo.id;
   const prayers = useSelector(selectPrayers(currentColumnId));
+  const checkedPrayers = prayers.filter(elem => elem.checked === true);
+  const nonCheckedPrayers = prayers.filter(elem => elem.checked === false);
   const [prayersMode, setPrayersMode] = useState<'MY_PRAYERS' | 'SUBSCRIBED'>(
     'MY_PRAYERS',
   );
@@ -53,8 +55,10 @@ const PrayersScreen = ({navigation, route}: PrayersScreenProps) => {
         {prayersMode === 'MY_PRAYERS' && (
           <AddPrayerForm currentColumnId={currentColumnId} />
         )}
-        <PrayerList prayerList={prayers} />
-        {/* <Text> инфа по колонке: {route.params.columnInfo.title}</Text> */}
+        <ScrollView>
+          <PrayerList prayerList={checkedPrayers} />
+          <PrayerList prayerList={nonCheckedPrayers} />
+        </ScrollView>
       </Container>
     </SafeAreaView>
   );
