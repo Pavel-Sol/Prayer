@@ -17,7 +17,7 @@ const AddPrayerForm: React.FC<AddPrayerFormPropsType> = ({currentColumnId}) => {
       columnId: currentColumnId,
       title: prayerTitle,
       description: 'some desc',
-      checked: true,
+      checked: false,
     };
     dispatch(createPrayerAction(newPrayer));
   };

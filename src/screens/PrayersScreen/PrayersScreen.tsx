@@ -10,7 +10,8 @@ import {selectPrayers} from '../../store/selectors';
 import {SelectController} from './components/SelectController';
 import {AddPrayerForm} from './components/AddPrayerForm';
 import {PrayerList} from './components/PrayerList';
-import {Container} from './style';
+import {BtnWrapper, Container} from './style';
+import {MainBtn} from '../../ui/MainBtn';
 
 type PrayersScreenProps = NativeStackScreenProps<RootStackParams, 'Prayers'>;
 const PrayersScreen = ({navigation, route}: PrayersScreenProps) => {
@@ -19,9 +20,14 @@ const PrayersScreen = ({navigation, route}: PrayersScreenProps) => {
   const prayers = useSelector(selectPrayers(currentColumnId));
   const checkedPrayers = prayers.filter(elem => elem.checked === true);
   const nonCheckedPrayers = prayers.filter(elem => elem.checked === false);
+  const [isShowCheckedPrayers, setIsShowCheckedPrayers] = useState(false);
   const [prayersMode, setPrayersMode] = useState<'MY_PRAYERS' | 'SUBSCRIBED'>(
     'MY_PRAYERS',
   );
+
+  const toggleShowCheckedPrayers = () => {
+    setIsShowCheckedPrayers(!isShowCheckedPrayers);
+  };
 
   const selectPrayersMode = (mode: 'MY_PRAYERS' | 'SUBSCRIBED') => {
     setPrayersMode(mode);
@@ -56,8 +62,17 @@ const PrayersScreen = ({navigation, route}: PrayersScreenProps) => {
           <AddPrayerForm currentColumnId={currentColumnId} />
         )}
         <ScrollView>
-          <PrayerList prayerList={checkedPrayers} />
           <PrayerList prayerList={nonCheckedPrayers} />
+          {prayers.length > 0 && (
+            <BtnWrapper>
+              <MainBtn onPress={toggleShowCheckedPrayers}>
+                {isShowCheckedPrayers
+                  ? 'hide Answered Prayers'
+                  : 'Show Answered Prayers'}
+              </MainBtn>
+            </BtnWrapper>
+          )}
+          {isShowCheckedPrayers && <PrayerList prayerList={checkedPrayers} />}
         </ScrollView>
       </Container>
     </SafeAreaView>
