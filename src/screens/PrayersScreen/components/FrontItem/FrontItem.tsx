@@ -1,6 +1,8 @@
 import React from 'react';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import {useDispatch} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
+
 import {Palms} from '../../../../icons/Palms';
 import {User} from '../../../../icons/User';
 import {updatePrayerAction} from '../../../../store/actions';
@@ -13,6 +15,7 @@ import {
   RowFrontTitleWrapper,
 } from './style';
 import {RowFront} from './style';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 type FrontItemPropsType = {
   data: PrayerType;
@@ -22,6 +25,7 @@ type FrontItemPropsType = {
 const FrontItem: React.FC<FrontItemPropsType> = ({data, isChecked}) => {
   // console.log('data!!!', data);
   const dispatch = useDispatch();
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   const handleCheckBox = () => {
     const updatedPrayer = {
@@ -49,7 +53,7 @@ const FrontItem: React.FC<FrontItemPropsType> = ({data, isChecked}) => {
         />
 
         <RowFrontTitleWrapper
-          onPress={() => console.log('переход к DetailScreen')}>
+          onPress={() => navigation.navigate('PrayerDetails', {prayer: data})}>
           <RowFrontTitle isChecked={isChecked}>{data.title}</RowFrontTitle>
         </RowFrontTitleWrapper>
         <IconWrapper>

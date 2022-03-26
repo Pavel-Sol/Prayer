@@ -8,14 +8,16 @@ import {PrayersScreen} from '../../screens/PrayersScreen';
 import {useDispatch, useSelector} from 'react-redux';
 import {localStorage} from '../../store/services/localStorage/localStorage';
 import {loading, login} from '../../store/reducers/userSlice';
-import {ColumnType} from '../../types/types';
+import {ColumnType, PrayerType} from '../../types/types';
 import {selectToken} from '../../store/selectors';
+import {PrayerDetailsScreen} from '../../screens/PrayerDetailsScreen';
 
 export type RootStackParams = {
   Login: undefined;
   Register: undefined;
   MyDesc: undefined;
   Prayers: {columnInfo: ColumnType};
+  PrayerDetails: {prayer: PrayerType};
 };
 
 const Stack = createNativeStackNavigator<RootStackParams>();
@@ -47,6 +49,10 @@ const RootStack = () => {
           <>
             <Stack.Screen name="MyDesc" component={MyDescScreen} />
             <Stack.Screen name="Prayers" component={PrayersScreen} />
+            <Stack.Screen
+              name="PrayerDetails"
+              component={PrayerDetailsScreen}
+            />
           </>
         ) : (
           <>
