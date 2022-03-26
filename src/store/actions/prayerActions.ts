@@ -1,5 +1,5 @@
 import {createAction} from '@reduxjs/toolkit';
-import {CreatePrayerType} from '../../types/types';
+import {CreatePrayerType, UpdatePrayerType} from '../../types/types';
 
 export const getPrayersAction = createAction('getPrayers');
 
@@ -21,3 +21,14 @@ export const deletePrayerAction = createAction('deletePrayer', (id: number) => {
     },
   };
 });
+
+export const updatePrayerAction = createAction(
+  'updatePrayer',
+  (prayer: UpdatePrayerType) => {
+    return {
+      payload: {
+        prayer,
+      },
+    };
+  },
+);

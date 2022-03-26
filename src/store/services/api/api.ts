@@ -1,4 +1,8 @@
-import {CreatePrayerType, PrayerType} from '../../../types/types';
+import {
+  CreatePrayerType,
+  PrayerType,
+  UpdatePrayerType,
+} from '../../../types/types';
 import {commonInstance, authInstance} from './instance';
 
 type UserProps = {
@@ -32,4 +36,8 @@ export const deletePrayerApi = (prayerId: number) => {
 
 export const getOnePrayerApi = (prayerId: number) => {
   return commonInstance.get(`prayers/${prayerId}`);
+};
+
+export const updatePrayerApi = (updatedPrayer: UpdatePrayerType) => {
+  return commonInstance.put(`prayers/${updatedPrayer.id}`, updatedPrayer);
 };

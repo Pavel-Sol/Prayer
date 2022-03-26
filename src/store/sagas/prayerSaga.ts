@@ -6,18 +6,21 @@ import {
   getPrayersApi,
   deletePrayerApi,
   getOnePrayerApi,
+  updatePrayerApi,
 } from '../services/api';
 import {
   CreatePrayerActionType,
   PrayerType,
   DeletePrayerActionType,
+  UpdatePrayerActionType,
 } from '../../types/types';
 import {
   getPrayersAction,
   createPrayerAction,
   deletePrayerAction,
+  updatePrayerAction,
 } from './../actions';
-import {setPrayers, addPrayer, deletePrayer} from '../reducers';
+import {setPrayers, addPrayer, deletePrayer, updatePrayer} from '../reducers';
 
 function* fetchPrayersSaga() {
   try {
@@ -48,8 +51,21 @@ function* deletePrayerSaga(action: DeletePrayerActionType) {
   try {
     yield call(() => deletePrayerApi(action.payload.id));
     yield put(deletePrayer(action.payload.id));
-  } catch (e: any) {
-    console.log(e.message);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function* updatePrayerSaga(action: UpdatePrayerActionType) {
+  try {
+    const response: AxiosResponse<PrayerType> = yield call(() => {
+      return updatePrayerApi(action.payload.prayer);
+    });
+
+    console.log(response.data);
+    yield put(updatePrayer(response.data));
+  } catch (e) {
+    console.log(e);
   }
 }
 
@@ -57,6 +73,7 @@ function* prayersSaga() {
   yield takeEvery(createPrayerAction, createPrayerSaga);
   yield takeEvery(getPrayersAction, fetchPrayersSaga);
   yield takeEvery(deletePrayerAction, deletePrayerSaga);
+  yield takeEvery(updatePrayerAction, updatePrayerSaga);
 }
 
 export default prayersSaga;

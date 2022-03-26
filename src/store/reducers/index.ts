@@ -5,4 +5,4 @@ export {default as columnReducer} from './columnSlice';
 export {setColumns} from './columnSlice';
 
 export {default as prayerReducer} from './prayerSlice';
-export {setPrayers, addPrayer, deletePrayer} from './prayerSlice';
+export {setPrayers, addPrayer, deletePrayer, updatePrayer} from './prayerSlice';

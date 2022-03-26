@@ -7,4 +7,5 @@ export {
   getPrayersAction,
   createPrayerAction,
   deletePrayerAction,
+  updatePrayerAction,
 } from './prayerActions';

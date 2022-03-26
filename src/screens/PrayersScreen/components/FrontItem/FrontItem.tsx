@@ -1,8 +1,9 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import {useDispatch} from 'react-redux';
 import {Palms} from '../../../../icons/Palms';
 import {User} from '../../../../icons/User';
+import {updatePrayerAction} from '../../../../store/actions';
 import {PrayerType} from '../../../../types/types';
 import {
   Counter,
@@ -18,13 +19,26 @@ type FrontItemPropsType = {
 };
 
 const FrontItem: React.FC<FrontItemPropsType> = ({data}) => {
-  // console.log(data);
+  // console.log('data!!!', data);
+  const dispatch = useDispatch();
+
+  const handleCheckBox = () => {
+    const updatedPrayer = {
+      id: data.id,
+      title: data.title,
+      description: data.description,
+      checked: !data.checked,
+    };
+
+    dispatch(updatePrayerAction(updatedPrayer));
+  };
   return (
     <RowBackWrapper>
       <RowFront>
         <BouncyCheckbox
+          onPress={handleCheckBox}
           style={{borderRadius: 2}}
-          isChecked={true}
+          isChecked={data.checked}
           size={22}
           iconStyle={{
             borderColor: 'rgba(81, 77, 71, 1)',

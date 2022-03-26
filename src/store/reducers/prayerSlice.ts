@@ -22,8 +22,18 @@ const prayerSlice = createSlice({
     deletePrayer(state, {payload}: PayloadAction<number>) {
       state.prayers = state.prayers.filter(prayer => prayer.id !== payload);
     },
+    updatePrayer(state, {payload}: PayloadAction<PrayerType>) {
+      state.prayers = state.prayers.map(el => {
+        if (el.id === payload.id) {
+          return payload;
+        } else {
+          return el;
+        }
+      });
+    },
   },
 });
 
-export const {setPrayers, addPrayer, deletePrayer} = prayerSlice.actions;
+export const {setPrayers, addPrayer, deletePrayer, updatePrayer} =
+  prayerSlice.actions;
 export default prayerSlice.reducer;
