@@ -1,16 +1,35 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {View} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {getCommentsAction} from '../../../../store/actions';
+import {selectComments} from '../../../../store/selectors';
+
 import {CommentItem} from '../CommentItem';
 import {TitleWrapper, Title, CommentList} from './style';
-const Comments = () => {
+
+type CommentsPropsType = {
+  prayerId: number;
+};
+const Comments: React.FC<CommentsPropsType> = ({prayerId}) => {
+  const dispatch = useDispatch();
+  const comments = useSelector(selectComments(prayerId));
+  console.log(comments);
+  useEffect(() => {
+    dispatch(getCommentsAction());
+  }, []);
   return (
     <>
       <TitleWrapper>
         <Title>Comments</Title>
       </TitleWrapper>
       <CommentList>
-        <CommentItem />
-        <CommentItem />
-        <CommentItem />
+        {comments.map(comment => {
+          return (
+            <View key={comment.id}>
+              <CommentItem commentData={comment} />
+            </View>
+          );
+        })}
       </CommentList>
     </>
   );

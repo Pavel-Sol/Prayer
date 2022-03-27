@@ -4,3 +4,5 @@ export {default as registerSaga} from './registerSaga';
 export {default as columnsSaga} from './columnSaga';
 
 export {default as prayersSaga} from './prayerSaga';
+
+export {default as commentsSaga} from './commentSaga';

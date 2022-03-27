@@ -7,4 +7,5 @@ export {
   deletePrayerApi,
   getOnePrayerApi,
   updatePrayerApi,
+  getCommentsApi,
 } from './api';

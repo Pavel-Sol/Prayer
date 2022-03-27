@@ -24,7 +24,7 @@ const PrayerDetailsScreen = ({navigation, route}: PrayerDetailsScreenProps) => {
         </LastPrayedWrapper>
         <DetailsInfo />
         <Members />
-        <Comments />
+        <Comments prayerId={prayer.id} />
         <AddCommentForm />
       </Content>
     </>

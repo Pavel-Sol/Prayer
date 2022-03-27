@@ -9,3 +9,5 @@ export {
   deletePrayerAction,
   updatePrayerAction,
 } from './prayerActions';
+
+export {getCommentsAction} from './commentAction';

@@ -1,4 +1,5 @@
 import React from 'react';
+import {CommentType} from '../../../../types/types';
 import {
   Container,
   AvatarWrapper,
@@ -9,7 +10,11 @@ import {
   CommentText,
   CommentDescTop,
 } from './style';
-const CommentItem = () => {
+
+type CommentItemPropsType = {
+  commentData: CommentType;
+};
+const CommentItem: React.FC<CommentItemPropsType> = ({commentData}) => {
   return (
     <Container>
       <AvatarWrapper>
@@ -20,7 +25,7 @@ const CommentItem = () => {
           <UserName>Anna Barber</UserName>
           <Date>2 days ago</Date>
         </CommentDescTop>
-        <CommentText>Hey, Hey!</CommentText>
+        <CommentText>{commentData.body}</CommentText>
       </CommentDesc>
     </Container>
   );

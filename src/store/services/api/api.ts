@@ -41,3 +41,7 @@ export const getOnePrayerApi = (prayerId: number) => {
 export const updatePrayerApi = (updatedPrayer: UpdatePrayerType) => {
   return commonInstance.put(`prayers/${updatedPrayer.id}`, updatedPrayer);
 };
+
+export const getCommentsApi = () => {
+  return commonInstance.get('comments');
+};
