@@ -5,6 +5,8 @@ import {Header} from './components/Header';
 import {DetailsInfo} from './components/DetailsInfo';
 import {Content, Decor, LastPrayed, LastPrayedWrapper} from './style';
 import {Members} from './components/Members';
+import {Comments} from './components/Comments';
+import {AddCommentForm} from './components/AddCommentForm';
 
 type PrayerDetailsScreenProps = NativeStackScreenProps<
   RootStackParams,
@@ -22,6 +24,8 @@ const PrayerDetailsScreen = ({navigation, route}: PrayerDetailsScreenProps) => {
         </LastPrayedWrapper>
         <DetailsInfo />
         <Members />
+        <Comments />
+        <AddCommentForm />
       </Content>
     </>
   );

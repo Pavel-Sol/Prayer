@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
+import {AddIcon} from '../../../../icons/AddIcon';
 
 import {createPrayerAction} from '../../../../store/actions';
 import {Input} from '../../../../ui/Input';
@@ -24,11 +25,11 @@ const AddPrayerForm: React.FC<AddPrayerFormPropsType> = ({currentColumnId}) => {
   return (
     <Container>
       <Input
-        isIconLeft
         onChangeText={setPrayerTitle}
         placeholder="Add prayer"
         value={prayerTitle}
         onIconPress={addNewPrayer}
+        Icon={<AddIcon />}
       />
     </Container>
   );
