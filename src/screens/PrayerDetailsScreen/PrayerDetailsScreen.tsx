@@ -1,8 +1,10 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React, {useEffect} from 'react';
-import {Text} from 'react-native';
+import React from 'react';
 import {RootStackParams} from '../../navigation/RootStack/RootStack';
 import {Header} from './components/Header';
+import {DetailsInfo} from './components/DetailsInfo';
+import {Content, Decor, LastPrayed, LastPrayedWrapper} from './style';
+import {Members} from './components/Members';
 
 type PrayerDetailsScreenProps = NativeStackScreenProps<
   RootStackParams,
@@ -13,7 +15,14 @@ const PrayerDetailsScreen = ({navigation, route}: PrayerDetailsScreenProps) => {
   return (
     <>
       <Header title={prayer.title} />
-      <Text>PrayerDetailsScreen</Text>
+      <Content>
+        <LastPrayedWrapper>
+          <Decor />
+          <LastPrayed>Last prayed 8 min ago</LastPrayed>
+        </LastPrayedWrapper>
+        <DetailsInfo />
+        <Members />
+      </Content>
     </>
   );
 };
