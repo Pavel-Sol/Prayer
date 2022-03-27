@@ -1,5 +1,10 @@
 import {loginUserAction, registerUserAction} from './../store/actions';
-import {createPrayerAction, deletePrayerAction, updatePrayerAction} from './../store/actions';
+import {
+  createPrayerAction,
+  deletePrayerAction,
+  updatePrayerAction,
+  createCommentAction,
+} from './../store/actions';
 
 export type UserType = {
   email: string;
@@ -52,6 +57,11 @@ export type CommentType = {
   userId: number;
 };
 
+export type CreateCommentType = {
+  body: string;
+  prayerId: number;
+};
+
 // --------------------- RESPONSE TYPES---------------------
 export type AuthSignUpResponse = {
   email: string;
@@ -75,5 +85,4 @@ export type RegisterUserActionType = ReturnType<typeof registerUserAction>;
 export type CreatePrayerActionType = ReturnType<typeof createPrayerAction>;
 export type DeletePrayerActionType = ReturnType<typeof deletePrayerAction>;
 export type UpdatePrayerActionType = ReturnType<typeof updatePrayerAction>;
-
-// updatePrayerAction
+export type CreateCommentActionType = ReturnType<typeof createCommentAction>;

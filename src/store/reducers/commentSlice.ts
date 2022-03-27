@@ -16,8 +16,11 @@ const commentSlice = createSlice({
     setComments(state, {payload}: PayloadAction<CommentType[]>) {
       state.comments = payload;
     },
+    addComment(state, {payload}: PayloadAction<CommentType>) {
+      state.comments = [payload, ...state.comments];
+    },
   },
 });
 
-export const {setComments} = commentSlice.actions;
+export const {setComments, addComment} = commentSlice.actions;
 export default commentSlice.reducer;

@@ -8,4 +8,6 @@ export {
   getOnePrayerApi,
   updatePrayerApi,
   getCommentsApi,
+  addCommentApi,
+  getOneCommentApi,
 } from './api';

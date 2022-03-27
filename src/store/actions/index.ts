@@ -10,4 +10,4 @@ export {
   updatePrayerAction,
 } from './prayerActions';
 
-export {getCommentsAction} from './commentAction';
+export {getCommentsAction, createCommentAction} from './commentAction';

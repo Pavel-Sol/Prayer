@@ -8,6 +8,7 @@ export const Container = styled(View)`
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 50px;
 `;
 
 export const Input = styled(TextInput)``;

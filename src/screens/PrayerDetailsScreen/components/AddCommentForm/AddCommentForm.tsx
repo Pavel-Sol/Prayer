@@ -1,12 +1,26 @@
 import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {Comment} from '../../../../icons/Comment';
+import {createCommentAction} from '../../../../store/actions';
 import {Input} from '../../../../ui/Input';
 import {Container} from './style';
+// createCommentAction
 
-const AddCommentForm = () => {
+type AddCommentFormPropsType = {
+  prayerId: number;
+};
+
+const AddCommentForm: React.FC<AddCommentFormPropsType> = ({prayerId}) => {
   const [commentText, setCommentText] = useState('');
+  const dispatch = useDispatch();
+
   const addNewComment = () => {
-    console.log(commentText);
+    const newComment = {
+      body: commentText,
+      prayerId: prayerId,
+    };
+    dispatch(createCommentAction(newComment));
+    setCommentText('');
   };
   return (
     <Container>
