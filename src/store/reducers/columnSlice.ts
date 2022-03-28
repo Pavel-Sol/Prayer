@@ -16,8 +16,11 @@ const columnSlice = createSlice({
     setColumns(state, {payload}: PayloadAction<{columns: ColumnType[]}>) {
       state.columns = payload.columns;
     },
+    addColumn(state, {payload}: PayloadAction<ColumnType>) {
+      state.columns = [...state.columns, payload];
+    },
   },
 });
 
-export const {setColumns} = columnSlice.actions;
+export const {setColumns, addColumn} = columnSlice.actions;
 export default columnSlice.reducer;

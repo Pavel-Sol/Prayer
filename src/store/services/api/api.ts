@@ -1,8 +1,8 @@
 import {CreateCommentType} from './../../../types/types';
 import {
   CreatePrayerType,
-  PrayerType,
   UpdatePrayerType,
+  CreateColumnType,
 } from '../../../types/types';
 import {commonInstance, authInstance} from './instance';
 
@@ -20,6 +20,14 @@ export const API = {
   },
   getColumns: () => {
     return commonInstance.get('columns');
+  },
+
+  addColumn: (column: CreateColumnType) => {
+    return commonInstance.post('columns', column);
+  },
+
+  getOneColumn: (columnId: number) => {
+    return commonInstance.get(`columns/${columnId}`);
   },
 
   getPrayers: () => {

@@ -1,5 +1,6 @@
 import {loginUserAction, registerUserAction} from './../store/actions';
 import {
+  createColumnAction,
   createPrayerAction,
   deletePrayerAction,
   updatePrayerAction,
@@ -25,6 +26,10 @@ export type ColumnType = {
   title: string;
   description?: string;
   userId: number;
+};
+export type CreateColumnType = {
+  title: string;
+  description: string;
 };
 
 export type PrayerType = {
@@ -82,6 +87,7 @@ export type AuthSignInResponse = {
 // -------------------------------------------------
 export type LoginUserActionType = ReturnType<typeof loginUserAction>;
 export type RegisterUserActionType = ReturnType<typeof registerUserAction>;
+export type CreateColumnActionType = ReturnType<typeof createColumnAction>;
 export type CreatePrayerActionType = ReturnType<typeof createPrayerAction>;
 export type DeletePrayerActionType = ReturnType<typeof deletePrayerAction>;
 export type UpdatePrayerActionType = ReturnType<typeof updatePrayerAction>;
