@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {TouchableOpacity} from 'react-native';
+import React from 'react';
+import {Form, Field} from 'react-final-form';
 import {useDispatch} from 'react-redux';
 import {AddIcon} from '../../../../icons/AddIcon';
 
@@ -13,27 +13,42 @@ type AddPrayerFormPropsType = {
 
 const AddPrayerForm: React.FC<AddPrayerFormPropsType> = ({currentColumnId}) => {
   const dispatch = useDispatch();
-  const [prayerTitle, setPrayerTitle] = useState('');
-  const addNewPrayer = () => {
+
+  type PrayerValuesType = {
+    title: string;
+  };
+
+  const handleSubmitPrayer = (values: PrayerValuesType) => {
     const newPrayer = {
       columnId: currentColumnId,
-      title: prayerTitle,
+      title: values.title,
       description: 'some desc',
       checked: false,
     };
     dispatch(createPrayerAction(newPrayer));
-    setPrayerTitle('');
+    values.title = '';
   };
   return (
     <Container>
-      <Input
-        onChangeText={setPrayerTitle}
-        placeholder="Add prayer"
-        value={prayerTitle}>
-        <IconBtn onPress={addNewPrayer}>
-          <AddIcon />
-        </IconBtn>
-      </Input>
+      <Form
+        onSubmit={handleSubmitPrayer}
+        render={({form, values}) => (
+          <>
+            <Field name="title">
+              {({input}) => (
+                <Input
+                  onChangeText={input.onChange}
+                  value={input.value}
+                  placeholder="Add prayer...">
+                  <IconBtn onPress={form.submit} disabled={!values.title}>
+                    <AddIcon />
+                  </IconBtn>
+                </Input>
+              )}
+            </Field>
+          </>
+        )}
+      />
     </Container>
   );
 };

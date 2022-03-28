@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {TouchableOpacity} from 'react-native';
+import React from 'react';
+import {Form, Field} from 'react-final-form';
 import {useDispatch} from 'react-redux';
 
 import {Comment} from '../../../../icons/Comment';
@@ -12,28 +12,42 @@ type AddCommentFormPropsType = {
 };
 
 const AddCommentForm: React.FC<AddCommentFormPropsType> = ({prayerId}) => {
-  const [commentText, setCommentText] = useState('');
   const dispatch = useDispatch();
 
-  const addNewComment = () => {
+  type CommentValuesType = {
+    text: string;
+  };
+  const handleSubmitComment = (values: CommentValuesType) => {
     const newComment = {
-      body: commentText,
+      body: values.text,
       prayerId: prayerId,
     };
     dispatch(createCommentAction(newComment));
-    setCommentText('');
+    values.text = '';
   };
+
   return (
     <Container>
-      <Input
-        containerStyle={{borderWidth: 0}}
-        onChangeText={setCommentText}
-        placeholder="Add comment..."
-        value={commentText}>
-        <IconBtn onPress={addNewComment}>
-          <Comment />
-        </IconBtn>
-      </Input>
+      <Form
+        onSubmit={handleSubmitComment}
+        render={({form, values}) => (
+          <>
+            <Field name="text">
+              {({input}) => (
+                <Input
+                  containerStyle={{borderWidth: 0}}
+                  onChangeText={input.onChange}
+                  value={input.value}
+                  placeholder="Add comment...">
+                  <IconBtn onPress={form.submit} disabled={!values.text}>
+                    <Comment />
+                  </IconBtn>
+                </Input>
+              )}
+            </Field>
+          </>
+        )}
+      />
     </Container>
   );
 };
