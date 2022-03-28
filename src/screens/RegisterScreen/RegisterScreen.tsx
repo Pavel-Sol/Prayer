@@ -73,6 +73,7 @@ const RegisterScreen = ({navigation}: RegisterScreenProps) => {
                     onChangeText={input.onChange}
                     value={input.value}
                     placeholder="введите пароль"
+                    secureTextEntry={true}
                   />
                 </View>
               )}

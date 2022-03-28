@@ -57,6 +57,7 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
                       onChangeText={input.onChange}
                       value={input.value}
                       placeholder="введите пароль"
+                      secureTextEntry={true}
                     />
                   </View>
                 )}
