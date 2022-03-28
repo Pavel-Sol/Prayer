@@ -1,20 +1,17 @@
 import React from 'react';
 import {StyleProp, TextInputProps, ViewStyle} from 'react-native';
 
-import {AddBtn, Container, StyledInput} from './style';
+import {Container, StyledInput} from './style';
 
 type InputPropsType = {
-  containerStyle? : StyleProp<ViewStyle>
-  Icon?: React.ReactNode;
-  onIconPress?: () => void;
+  containerStyle?: StyleProp<ViewStyle>;
+  children?: React.ReactNode;
 } & TextInputProps;
 
-const Input: React.FC<InputPropsType> = props => {
+const Input: React.FC<InputPropsType> = ({children, ...props}) => {
   return (
     <Container style={props.containerStyle}>
-      {props.Icon ? (
-        <AddBtn onPress={props.onIconPress}>{props.Icon}</AddBtn>
-      ) : null}
+      {children}
       <StyledInput {...props} />
     </Container>
   );

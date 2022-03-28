@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
+import {TouchableOpacity} from 'react-native';
 import {useDispatch} from 'react-redux';
+
 import {Comment} from '../../../../icons/Comment';
 import {createCommentAction} from '../../../../store/actions';
 import {Input} from '../../../../ui/Input';
-import {Container} from './style';
+import {Container, IconBtn} from './style';
 
 type AddCommentFormPropsType = {
   prayerId: number;
@@ -27,10 +29,11 @@ const AddCommentForm: React.FC<AddCommentFormPropsType> = ({prayerId}) => {
         containerStyle={{borderWidth: 0}}
         onChangeText={setCommentText}
         placeholder="Add comment..."
-        value={commentText}
-        onIconPress={addNewComment}
-        Icon={<Comment />}
-      />
+        value={commentText}>
+        <IconBtn onPress={addNewComment}>
+          <Comment />
+        </IconBtn>
+      </Input>
     </Container>
   );
 };

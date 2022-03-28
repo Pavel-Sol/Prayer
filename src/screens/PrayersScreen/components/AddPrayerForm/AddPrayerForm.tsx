@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
+import {TouchableOpacity} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {AddIcon} from '../../../../icons/AddIcon';
 
 import {createPrayerAction} from '../../../../store/actions';
 import {Input} from '../../../../ui/Input';
-import {Container} from './style';
+import {Container, IconBtn} from './style';
 
 type AddPrayerFormPropsType = {
   currentColumnId: number;
@@ -28,10 +29,11 @@ const AddPrayerForm: React.FC<AddPrayerFormPropsType> = ({currentColumnId}) => {
       <Input
         onChangeText={setPrayerTitle}
         placeholder="Add prayer"
-        value={prayerTitle}
-        onIconPress={addNewPrayer}
-        Icon={<AddIcon />}
-      />
+        value={prayerTitle}>
+        <IconBtn onPress={addNewPrayer}>
+          <AddIcon />
+        </IconBtn>
+      </Input>
     </Container>
   );
 };

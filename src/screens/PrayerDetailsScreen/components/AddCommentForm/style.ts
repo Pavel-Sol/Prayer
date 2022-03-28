@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {View, Text, TextInput} from 'react-native';
+import {View, TouchableOpacity} from 'react-native';
 
 export const Container = styled(View)`
   width: 100%;
@@ -10,4 +10,6 @@ export const Container = styled(View)`
   align-items: center;
 `;
 
-export const Input = styled(TextInput)``;
+export const IconBtn = styled(TouchableOpacity)`
+  margin-horizontal: 10px;
+`;
