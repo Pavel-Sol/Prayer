@@ -1,4 +1,5 @@
 import React from 'react';
+import {format} from 'timeago.js';
 import {CommentType} from '../../../../types/types';
 import {
   Container,
@@ -23,7 +24,7 @@ const CommentItem: React.FC<CommentItemPropsType> = ({commentData}) => {
       <CommentDesc>
         <CommentDescTop>
           <UserName>Anna Barber</UserName>
-          <Date>2 days ago</Date>
+          <Date>{format(commentData.created)}</Date>
         </CommentDescTop>
         <CommentText>{commentData.body}</CommentText>
       </CommentDesc>

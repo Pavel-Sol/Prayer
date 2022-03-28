@@ -4,7 +4,6 @@ import {Comment} from '../../../../icons/Comment';
 import {createCommentAction} from '../../../../store/actions';
 import {Input} from '../../../../ui/Input';
 import {Container} from './style';
-// createCommentAction
 
 type AddCommentFormPropsType = {
   prayerId: number;

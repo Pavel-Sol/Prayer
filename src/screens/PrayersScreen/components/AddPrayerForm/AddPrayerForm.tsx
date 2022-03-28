@@ -21,6 +21,7 @@ const AddPrayerForm: React.FC<AddPrayerFormPropsType> = ({currentColumnId}) => {
       checked: false,
     };
     dispatch(createPrayerAction(newPrayer));
+    setPrayerTitle('');
   };
   return (
     <Container>
