@@ -1,4 +1,4 @@
-import {CreateCommentType} from './../../../types/types';
+import {CreateCommentType, UpdateCommentType} from './../../../types/types';
 import {
   CreatePrayerType,
   UpdatePrayerType,
@@ -59,5 +59,9 @@ export const API = {
   },
   getOneComment: (commentId: number) => {
     return commonInstance.get(`comments/${commentId}`);
+  },
+
+  updateComment: (updatedComment: UpdateCommentType) => {
+    return commonInstance.put(`comments/${updatedComment.id}`, updatedComment);
   },
 };

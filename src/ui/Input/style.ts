@@ -7,7 +7,7 @@ export const Container = styled(View)`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 50px;
+  min-height: 50px;
   border-width: 1px;
   border-radius: 10px;
   border-color: #e5e5e5;

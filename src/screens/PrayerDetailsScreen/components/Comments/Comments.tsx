@@ -13,7 +13,7 @@ type CommentsPropsType = {
 const Comments: React.FC<CommentsPropsType> = ({prayerId}) => {
   const dispatch = useDispatch();
   const comments = useSelector(selectComments(prayerId));
-  // console.log(comments);
+
   useEffect(() => {
     dispatch(getCommentsAction());
   }, []);

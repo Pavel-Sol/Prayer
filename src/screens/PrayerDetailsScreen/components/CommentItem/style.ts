@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {View, Image, Text} from 'react-native';
+import {View, Image, Text, TouchableOpacity} from 'react-native';
 
 export const Container = styled(View)`
   width: 100%;
@@ -53,4 +53,8 @@ export const CommentText = styled(Text)`
   margin-top: 5px;
   font-size: 17px;
   color: rgba(156, 156, 156, 1);
+`;
+
+export const IconBtn = styled(TouchableOpacity)`
+  margin-horizontal: 10px;
 `;

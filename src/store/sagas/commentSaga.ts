@@ -1,9 +1,17 @@
-import {CommentType, CreateCommentActionType} from './../../types/types';
+import {
+  CommentType,
+  CreateCommentActionType,
+  UpdateCommentActionType,
+} from './../../types/types';
 import {AxiosResponse} from 'axios';
 import {call, put, takeEvery} from 'redux-saga/effects';
-import {getCommentsAction, createCommentAction} from './../actions';
+import {
+  getCommentsAction,
+  createCommentAction,
+  updateCommentAction,
+} from './../actions';
 import {API} from '../services/api';
-import {setComments, addComment} from '../reducers';
+import {setComments, addComment, updateComment} from '../reducers';
 
 function* fetchCommentsSaga() {
   try {
@@ -31,9 +39,22 @@ function* createCommentSaga(action: CreateCommentActionType) {
   }
 }
 
+function* updateCommentSaga(action: UpdateCommentActionType) {
+  try {
+    const response: AxiosResponse<CommentType> = yield call(() => {
+      return API.updateComment(action.payload.comment);
+    });
+
+    yield put(updateComment(response.data));
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 function* commentsSaga() {
   yield takeEvery(getCommentsAction, fetchCommentsSaga);
   yield takeEvery(createCommentAction, createCommentSaga);
+  yield takeEvery(updateCommentAction, updateCommentSaga);
 }
 
 export default commentsSaga;

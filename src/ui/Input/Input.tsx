@@ -1,10 +1,11 @@
 import React from 'react';
-import {StyleProp, TextInputProps, ViewStyle} from 'react-native';
+import {StyleProp, TextInputProps, TextStyle, ViewStyle} from 'react-native';
 
 import {Container, StyledInput} from './style';
 
 type InputPropsType = {
   containerStyle?: StyleProp<ViewStyle>;
+  inputStyle?: StyleProp<TextStyle>;
   children?: React.ReactNode;
 } & TextInputProps;
 
