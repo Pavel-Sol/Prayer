@@ -2,12 +2,12 @@ import {CommentType, CreateCommentActionType} from './../../types/types';
 import {AxiosResponse} from 'axios';
 import {call, put, takeEvery} from 'redux-saga/effects';
 import {getCommentsAction, createCommentAction} from './../actions';
-import {getCommentsApi, addCommentApi, getOneCommentApi} from '../services/api';
+import {API} from '../services/api';
 import {setComments, addComment} from '../reducers';
 
 function* fetchCommentsSaga() {
   try {
-    const response: AxiosResponse<CommentType[]> = yield call(getCommentsApi);
+    const response: AxiosResponse<CommentType[]> = yield call(API.getComments);
     yield put(setComments(response.data));
   } catch (error) {
     console.log(error);
@@ -16,11 +16,11 @@ function* fetchCommentsSaga() {
 
 function* createCommentSaga(action: CreateCommentActionType) {
   const createCommentResponse: AxiosResponse<CommentType> = yield call(() => {
-    return addCommentApi(action.payload.comment);
+    return API.addComment(action.payload.comment);
   });
 
   const getOneCommentResponse: AxiosResponse<CommentType> = yield call(() => {
-    return getOneCommentApi(createCommentResponse.data.id);
+    return API.getOneComment(createCommentResponse.data.id);
   });
 
   yield put(addComment(getOneCommentResponse.data));

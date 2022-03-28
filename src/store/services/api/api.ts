@@ -11,45 +11,45 @@ type UserProps = {
   password: string;
 };
 
-export const loginUserApi = (user: UserProps) => {
-  return authInstance.post('auth/sign-in/', user);
-};
+export const API = {
+  loginUser: (user: UserProps) => {
+    return authInstance.post('auth/sign-in/', user);
+  },
+  registerUser: (user: UserProps) => {
+    return authInstance.post('auth/sign-up/', user);
+  },
+  getColumns: () => {
+    return commonInstance.get('columns');
+  },
 
-export const registerUserApi = (user: UserProps) => {
-  return authInstance.post('auth/sign-up/', user);
-};
+  getPrayers: () => {
+    return commonInstance.get('prayers');
+  },
 
-export const getColumnsApi = () => {
-  return commonInstance.get('columns');
-};
+  addPrayer: (prayer: CreatePrayerType) => {
+    return commonInstance.post('prayers', prayer);
+  },
 
-export const getPrayersApi = () => {
-  return commonInstance.get('prayers');
-};
+  deletePrayer: (prayerId: number) => {
+    return commonInstance.delete(`prayers/${prayerId}`);
+  },
 
-export const addPrayerApi = (prayer: CreatePrayerType) => {
-  return commonInstance.post('prayers', prayer);
-};
+  getOnePrayer: (prayerId: number) => {
+    return commonInstance.get(`prayers/${prayerId}`);
+  },
 
-export const deletePrayerApi = (prayerId: number) => {
-  return commonInstance.delete(`prayers/${prayerId}`);
-};
+  updatePrayer: (updatedPrayer: UpdatePrayerType) => {
+    return commonInstance.put(`prayers/${updatedPrayer.id}`, updatedPrayer);
+  },
 
-export const getOnePrayerApi = (prayerId: number) => {
-  return commonInstance.get(`prayers/${prayerId}`);
-};
+  getComments: () => {
+    return commonInstance.get('comments');
+  },
 
-export const updatePrayerApi = (updatedPrayer: UpdatePrayerType) => {
-  return commonInstance.put(`prayers/${updatedPrayer.id}`, updatedPrayer);
-};
-
-export const getCommentsApi = () => {
-  return commonInstance.get('comments');
-};
-export const addCommentApi = (comment: CreateCommentType) => {
-  return commonInstance.post('comments', comment);
-};
-
-export const getOneCommentApi = (commentId: number) => {
-  return commonInstance.get(`comments/${commentId}`);
+  addComment: (comment: CreateCommentType) => {
+    return commonInstance.post('comments', comment);
+  },
+  getOneComment: (commentId: number) => {
+    return commonInstance.get(`comments/${commentId}`);
+  },
 };

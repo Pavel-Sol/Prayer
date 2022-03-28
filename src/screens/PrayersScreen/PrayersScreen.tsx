@@ -33,8 +33,6 @@ const PrayersScreen = ({navigation, route}: PrayersScreenProps) => {
     setPrayersMode(mode);
   };
 
-  // console.log('prayers ', prayers);
-
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShadowVisible: false,

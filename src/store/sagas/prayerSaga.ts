@@ -2,11 +2,7 @@ import {AxiosResponse} from 'axios';
 import {call, put, takeEvery} from 'redux-saga/effects';
 
 import {
-  addPrayerApi,
-  getPrayersApi,
-  deletePrayerApi,
-  getOnePrayerApi,
-  updatePrayerApi,
+  API
 } from '../services/api';
 import {
   CreatePrayerActionType,
@@ -24,7 +20,7 @@ import {setPrayers, addPrayer, deletePrayer, updatePrayer} from '../reducers';
 
 function* fetchPrayersSaga() {
   try {
-    const response: AxiosResponse<PrayerType[]> = yield call(getPrayersApi);
+    const response: AxiosResponse<PrayerType[]> = yield call(API.getPrayers);
     yield put(setPrayers({prayers: response.data}));
   } catch (error) {
     console.log(error);
@@ -34,11 +30,11 @@ function* fetchPrayersSaga() {
 function* createPrayerSaga(action: CreatePrayerActionType) {
   try {
     const createPrayerResponse: AxiosResponse<PrayerType> = yield call(() => {
-      return addPrayerApi(action.payload.prayer);
+      return API.addPrayer(action.payload.prayer);
     });
 
     const getOnePrayerResponse: AxiosResponse<PrayerType> = yield call(() => {
-      return getOnePrayerApi(createPrayerResponse.data.id);
+      return API.getOnePrayer(createPrayerResponse.data.id);
     });
 
     yield put(addPrayer(getOnePrayerResponse.data));
@@ -49,7 +45,7 @@ function* createPrayerSaga(action: CreatePrayerActionType) {
 
 function* deletePrayerSaga(action: DeletePrayerActionType) {
   try {
-    yield call(() => deletePrayerApi(action.payload.id));
+    yield call(() => API.deletePrayer(action.payload.id));
     yield put(deletePrayer(action.payload.id));
   } catch (e) {
     console.log(e);
@@ -59,10 +55,10 @@ function* deletePrayerSaga(action: DeletePrayerActionType) {
 function* updatePrayerSaga(action: UpdatePrayerActionType) {
   try {
     const response: AxiosResponse<PrayerType> = yield call(() => {
-      return updatePrayerApi(action.payload.prayer);
+      return API.updatePrayer(action.payload.prayer);
     });
 
-    console.log(response.data);
+    // console.log(response.data);
     yield put(updatePrayer(response.data));
   } catch (e) {
     console.log(e);

@@ -1,7 +1,7 @@
 import {AxiosResponse} from 'axios';
 import {call, put, takeEvery} from '@redux-saga/core/effects';
 
-import {loginUserApi} from '../services/api';
+import {API} from '../services/api';
 import {AuthSignInResponse, LoginUserActionType} from '../../types/types';
 import {loading, login} from './../reducers';
 import {loginUserAction} from './../actions';
@@ -11,7 +11,7 @@ function* signInWorkerSaga(action: LoginUserActionType) {
   try {
     yield put(loading(true));
     const response: AxiosResponse<AuthSignInResponse> = yield call(() =>
-      loginUserApi(action.payload.user),
+      API.loginUser(action.payload.user),
     );
 
     console.log('res loginSaga ', response.data);
