@@ -6,6 +6,7 @@ import {
   updatePrayerAction,
   createCommentAction,
   updateCommentAction,
+  deleteCommentAction,
 } from './../store/actions';
 
 export type UserType = {
@@ -98,3 +99,4 @@ export type DeletePrayerActionType = ReturnType<typeof deletePrayerAction>;
 export type UpdatePrayerActionType = ReturnType<typeof updatePrayerAction>;
 export type CreateCommentActionType = ReturnType<typeof createCommentAction>;
 export type UpdateCommentActionType = ReturnType<typeof updateCommentAction>;
+export type DeleteCommentActionType = ReturnType<typeof deleteCommentAction>;

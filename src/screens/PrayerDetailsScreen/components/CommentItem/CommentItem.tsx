@@ -13,12 +13,17 @@ import {
   CommentText,
   CommentDescTop,
   IconBtn,
+  DeleteBtnWrap,
+  DeleteBtn,
 } from './style';
 import {Input} from '../../../../ui/Input';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import {Comment} from '../../../../icons/Comment';
 import {useDispatch} from 'react-redux';
-import {updateCommentAction} from '../../../../store/actions';
+import {
+  updateCommentAction,
+  deleteCommentAction,
+} from '../../../../store/actions';
 
 type CommentItemPropsType = {
   commentData: CommentType;
@@ -34,6 +39,10 @@ const CommentItem: React.FC<CommentItemPropsType> = ({commentData}) => {
 
   const handleSubmitComment = (values: CommentValuesType) => {
     dispatch(updateCommentAction({body: values.body, id: commentData.id}));
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteCommentAction(commentData.id));
   };
 
   return (
@@ -75,6 +84,9 @@ const CommentItem: React.FC<CommentItemPropsType> = ({commentData}) => {
             <CommentDescTop>
               <UserName>Anna Barber</UserName>
               <Date>{format(commentData.created)}</Date>
+              <DeleteBtnWrap onPress={handleDelete}>
+                <DeleteBtn>удалить</DeleteBtn>
+              </DeleteBtnWrap>
             </CommentDescTop>
             <TouchableOpacity onPress={() => setIsChangeComment(true)}>
               <CommentText>{commentData.body}</CommentText>

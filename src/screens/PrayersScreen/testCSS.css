@@ -11,4 +11,5 @@
   text-transform: uppercase;
   border-radius: 50%;
   height: 43px;
+  align-self: flex-end;
 }

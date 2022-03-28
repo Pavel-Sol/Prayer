@@ -19,6 +19,9 @@ const commentSlice = createSlice({
     addComment(state, {payload}: PayloadAction<CommentType>) {
       state.comments = [...state.comments, payload];
     },
+    deleteComment(state, {payload}: PayloadAction<number>) {
+      state.comments = state.comments.filter(comment => comment.id !== payload);
+    },
     updateComment(state, {payload}: PayloadAction<CommentType>) {
       state.comments = state.comments.map(el => {
         if (el.id === payload.id) {
@@ -31,5 +34,6 @@ const commentSlice = createSlice({
   },
 });
 
-export const {setComments, addComment, updateComment} = commentSlice.actions;
+export const {setComments, addComment, updateComment, deleteComment} =
+  commentSlice.actions;
 export default commentSlice.reducer;

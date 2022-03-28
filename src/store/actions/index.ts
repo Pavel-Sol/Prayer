@@ -14,4 +14,5 @@ export {
   getCommentsAction,
   createCommentAction,
   updateCommentAction,
+  deleteCommentAction
 } from './commentAction';

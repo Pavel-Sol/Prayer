@@ -1,6 +1,7 @@
 import {
   CommentType,
   CreateCommentActionType,
+  DeleteCommentActionType,
   UpdateCommentActionType,
 } from './../../types/types';
 import {AxiosResponse} from 'axios';
@@ -9,9 +10,15 @@ import {
   getCommentsAction,
   createCommentAction,
   updateCommentAction,
+  deleteCommentAction,
 } from './../actions';
 import {API} from '../services/api';
-import {setComments, addComment, updateComment} from '../reducers';
+import {
+  setComments,
+  addComment,
+  updateComment,
+  deleteComment,
+} from '../reducers';
 
 function* fetchCommentsSaga() {
   try {
@@ -51,10 +58,21 @@ function* updateCommentSaga(action: UpdateCommentActionType) {
   }
 }
 
+function* deleteCommentSaga(action: DeleteCommentActionType) {
+  try {
+    yield call(() => API.deleteComment(action.payload.id));
+
+    yield put(deleteComment(action.payload.id));
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 function* commentsSaga() {
   yield takeEvery(getCommentsAction, fetchCommentsSaga);
   yield takeEvery(createCommentAction, createCommentSaga);
   yield takeEvery(updateCommentAction, updateCommentSaga);
+  yield takeEvery(deleteCommentAction, deleteCommentSaga);
 }
 
 export default commentsSaga;

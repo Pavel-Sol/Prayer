@@ -8,4 +8,9 @@ export {default as prayerReducer} from './prayerSlice';
 export {setPrayers, addPrayer, deletePrayer, updatePrayer} from './prayerSlice';
 
 export {default as commentReducer} from './commentSlice';
-export {setComments, addComment, updateComment} from './commentSlice';
+export {
+  setComments,
+  addComment,
+  updateComment,
+  deleteComment,
+} from './commentSlice';

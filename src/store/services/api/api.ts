@@ -64,4 +64,8 @@ export const API = {
   updateComment: (updatedComment: UpdateCommentType) => {
     return commonInstance.put(`comments/${updatedComment.id}`, updatedComment);
   },
+
+  deleteComment: (commentId: number) => {
+    return commonInstance.delete(`comments/${commentId}`);
+  },
 };

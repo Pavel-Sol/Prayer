@@ -27,13 +27,14 @@ export const Avatar = styled(Image)`
 `;
 
 export const CommentDesc = styled(View)`
-  width: 100%;
+  width: 90%;
 `;
 
 export const CommentDescTop = styled(View)`
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const UserName = styled(Text)`
@@ -47,6 +48,14 @@ export const Date = styled(Text)`
   padding-top: 5px;
   font-size: 13px;
   color: rgba(156, 156, 156, 1);
+`;
+
+export const DeleteBtnWrap = styled(TouchableOpacity)`
+  padding-top: 5px;
+`;
+export const DeleteBtn = styled(Text)`
+  font-size: 15px;
+  color: #000;
 `;
 
 export const CommentText = styled(Text)`

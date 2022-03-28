@@ -1,4 +1,4 @@
-import { CreateCommentType, UpdateCommentType } from './../../types/types';
+import {CreateCommentType, UpdateCommentType} from './../../types/types';
 import {createAction} from '@reduxjs/toolkit';
 export const getCommentsAction = createAction('getComments');
 
@@ -19,6 +19,17 @@ export const updateCommentAction = createAction(
     return {
       payload: {
         comment,
+      },
+    };
+  },
+);
+
+export const deleteCommentAction = createAction(
+  'deleteComment',
+  (id: number) => {
+    return {
+      payload: {
+        id,
       },
     };
   },

@@ -1,9 +1,7 @@
 import {AxiosResponse} from 'axios';
 import {call, put, takeEvery} from 'redux-saga/effects';
 
-import {
-  API
-} from '../services/api';
+import {API} from '../services/api';
 import {
   CreatePrayerActionType,
   PrayerType,
@@ -58,7 +56,6 @@ function* updatePrayerSaga(action: UpdatePrayerActionType) {
       return API.updatePrayer(action.payload.prayer);
     });
 
-    // console.log(response.data);
     yield put(updatePrayer(response.data));
   } catch (e) {
     console.log(e);
