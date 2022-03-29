@@ -1,11 +1,9 @@
 import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {View, Button, TouchableOpacity, ScrollView} from 'react-native';
+import {View, TouchableOpacity, ScrollView} from 'react-native';
 
 import {RootStackParams} from '../../navigation/RootStack/RootStack';
-import {logout} from '../../store/reducers';
-import {localStorage} from '../../store/services/localStorage';
 import {getColumnsAction} from '../../store/actions';
 import {AddIcon} from '../../icons/AddIcon';
 import {selectColumns} from '../../store/selectors';
@@ -33,16 +31,9 @@ const MyDescScreen = ({navigation}: MyDescScreenProps) => {
     dispatch(getColumnsAction());
   }, []);
 
-  const handleLogOut = () => {
-    // для теста
-    dispatch(logout());
-    localStorage.removeToken();
-  };
   return (
     <Container>
-      {/* для теста, позже уберу */}
       <View>
-        <Button title="ВЫЙТИ" onPress={handleLogOut} />
         {addColumnMode && <AddColumnForm />}
       </View>
 

@@ -8,7 +8,6 @@ export const commonInstance = axios.create({
   },
 });
 
-// общий instance для всех запросов
 commonInstance.interceptors.request.use(async config => {
   const token = await localStorage.getToken();
   if (!config.headers) {
@@ -22,7 +21,6 @@ commonInstance.interceptors.request.use(async config => {
     return Promise.reject(error);
   };
 
-//   instance для  запросов login и register
 export const authInstance = axios.create({
   baseURL: 'https://prayer.herokuapp.com/',
   headers: {

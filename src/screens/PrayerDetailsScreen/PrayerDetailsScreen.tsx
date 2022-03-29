@@ -16,7 +16,7 @@ type PrayerDetailsScreenProps = NativeStackScreenProps<
   RootStackParams,
   'PrayerDetails'
 >;
-const PrayerDetailsScreen = ({navigation, route}: PrayerDetailsScreenProps) => {
+const PrayerDetailsScreen = ({route}: PrayerDetailsScreenProps) => {
   const prayerId = route.params.prayerId;
   const prayer = useSelector(selectOnePrayer(prayerId));
 

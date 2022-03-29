@@ -6,7 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 import {ArrowLeft} from '../../../../icons/ArrowLeft';
 import {Palms} from '../../../../icons/Palms';
 import {HeaderWrapper, TopRow, BottomRow, HeaderTitle} from './style';
-import {PrayerType} from '../../../../types/types';
+
 
 type HeaderPropsType = {
   title: string;

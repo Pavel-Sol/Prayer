@@ -16,7 +16,6 @@ export type UserType = {
   id: number;
 };
 
-// UserProps
 export type UserProps = {
   email: string;
   name?: string;
@@ -73,7 +72,6 @@ export type UpdateCommentType = {
   id: number;
 };
 
-// --------------------- RESPONSE TYPES---------------------
 export type AuthSignUpResponse = {
   email: string;
   name: string;

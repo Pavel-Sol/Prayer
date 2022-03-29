@@ -17,7 +17,7 @@ import {
   DeleteBtn,
 } from './style';
 import {Input} from '../../../../ui/Input';
-import {TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import {Comment} from '../../../../icons/Comment';
 import {useDispatch} from 'react-redux';
 import {
