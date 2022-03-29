@@ -81,6 +81,7 @@ export type AuthSignUpResponse = {
   token: string;
   columns: ColumnType[];
   id: number;
+  message?: string;
 };
 
 export type AuthSignInResponse = {
@@ -88,9 +89,9 @@ export type AuthSignInResponse = {
   email: string;
   name: string;
   token: string;
+  message?: string;
 };
 
-// -------------------------------------------------
 export type LoginUserActionType = ReturnType<typeof loginUserAction>;
 export type RegisterUserActionType = ReturnType<typeof registerUserAction>;
 export type CreateColumnActionType = ReturnType<typeof createColumnAction>;

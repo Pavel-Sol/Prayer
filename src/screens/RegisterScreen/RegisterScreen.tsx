@@ -9,12 +9,14 @@ import {registerUserAction} from './../../store/actions';
 import {Loader} from '../../ui/Loader';
 import {Input} from '../../ui/Input';
 import {MainBtn} from '../../ui/MainBtn';
-import {selectUserLoading} from '../../store/selectors';
+import {selectUserError, selectUserLoading} from '../../store/selectors';
 import {BtnWrap, Container} from './style';
+import {Error} from '../../ui/Error';
 
 type RegisterScreenProps = NativeStackScreenProps<RootStackParams, 'Register'>;
 const RegisterScreen = ({navigation}: RegisterScreenProps) => {
   const isLoading = useSelector(selectUserLoading);
+  const error = useSelector(selectUserError);
   const dispatch = useDispatch();
 
   type RegisterValuesType = {
@@ -31,7 +33,6 @@ const RegisterScreen = ({navigation}: RegisterScreenProps) => {
         name: values.name,
       }),
     );
-    navigation.push('Login');
   };
 
   if (isLoading) {
@@ -40,6 +41,7 @@ const RegisterScreen = ({navigation}: RegisterScreenProps) => {
 
   return (
     <Container>
+      {error && <Error error={error} />}
       <Form
         onSubmit={handleSubmitSignUp}
         render={({form, values}) => (

@@ -1,5 +1,4 @@
-export {selectToken} from './userSelectors';
-export {selectUserLoading} from './userSelectors';
+export {selectToken, selectUserLoading, selectUserError} from './userSelectors';
 
 export {selectColumns, selectOneColumn} from './columnSelectors';
 

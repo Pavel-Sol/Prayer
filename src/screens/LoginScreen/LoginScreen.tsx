@@ -9,12 +9,14 @@ import {loginUserAction} from './../../store/actions';
 import {Loader} from '../../ui/Loader';
 import {Input} from '../../ui/Input';
 import {MainBtn} from '../../ui/MainBtn';
-import {selectUserLoading} from '../../store/selectors';
+import {selectUserError, selectUserLoading} from '../../store/selectors';
 import {BtnWrap, Container} from './style';
+import {Error} from '../../ui/Error';
 
 type LoginScreenProps = NativeStackScreenProps<RootStackParams, 'Login'>;
 const LoginScreen = ({navigation}: LoginScreenProps) => {
   const isLoading = useSelector(selectUserLoading);
+  const error = useSelector(selectUserError);
   const dispatch = useDispatch();
 
   type LoginValuesType = {
@@ -34,6 +36,7 @@ const LoginScreen = ({navigation}: LoginScreenProps) => {
     <Container>
       <View>
         <Text>LOGIN-BLOCK</Text>
+        {error && <Error error={error} />}
 
         <Form
           onSubmit={handleSubmitLogin}

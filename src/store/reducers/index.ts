@@ -1,5 +1,5 @@
 export {default as userReducer} from './userSlice';
-export {login, logout, loading} from './userSlice';
+export {login, logout, loading, setError} from './userSlice';
 
 export {default as columnReducer} from './columnSlice';
 export {setColumns, addColumn} from './columnSlice';
