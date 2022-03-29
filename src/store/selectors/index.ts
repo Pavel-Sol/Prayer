@@ -1,8 +1,8 @@
 export {selectToken} from './userSelectors';
 export {selectUserLoading} from './userSelectors';
 
-export {selectColumns} from './columnSelectors';
+export {selectColumns, selectOneColumn} from './columnSelectors';
 
-export {selectPrayers} from './prayerSelectors';
+export {selectPrayers, selectOnePrayer} from './prayerSelectors';
 
 export {selectComments} from './commentSelector';

@@ -8,10 +8,10 @@ import {Input} from '../../../../ui/Input';
 import {Container, IconBtn} from './style';
 
 type AddPrayerFormPropsType = {
-  currentColumnId: number;
+  columnId: number;
 };
 
-const AddPrayerForm: React.FC<AddPrayerFormPropsType> = ({currentColumnId}) => {
+const AddPrayerForm: React.FC<AddPrayerFormPropsType> = ({columnId}) => {
   const dispatch = useDispatch();
 
   type PrayerValuesType = {
@@ -20,7 +20,7 @@ const AddPrayerForm: React.FC<AddPrayerFormPropsType> = ({currentColumnId}) => {
 
   const handleSubmitPrayer = (values: PrayerValuesType) => {
     const newPrayer = {
-      columnId: currentColumnId,
+      columnId: columnId,
       title: values.title,
       description: 'some desc',
       checked: false,

@@ -23,7 +23,6 @@ type FrontItemPropsType = {
 };
 
 const FrontItem: React.FC<FrontItemPropsType> = ({data, isChecked}) => {
-  // console.log('data!!!', data);
   const dispatch = useDispatch();
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
@@ -53,7 +52,9 @@ const FrontItem: React.FC<FrontItemPropsType> = ({data, isChecked}) => {
         />
 
         <RowFrontTitleWrapper
-          onPress={() => navigation.navigate('PrayerDetails', {prayer: data})}>
+          onPress={() =>
+            navigation.navigate('PrayerDetails', {prayerId: data.id})
+          }>
           <RowFrontTitle isChecked={isChecked}>{data.title}</RowFrontTitle>
         </RowFrontTitleWrapper>
         <IconWrapper>

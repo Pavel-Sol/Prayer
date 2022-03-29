@@ -7,13 +7,27 @@ import {Content, Decor, LastPrayed, LastPrayedWrapper} from './style';
 import {Members} from './components/Members';
 import {Comments} from './components/Comments';
 import {AddCommentForm} from './components/AddCommentForm';
+import {useSelector} from 'react-redux';
+import {selectOnePrayer} from '../../store/selectors';
+import {View} from 'react-native';
+import {Text} from 'react-native-svg';
 
 type PrayerDetailsScreenProps = NativeStackScreenProps<
   RootStackParams,
   'PrayerDetails'
 >;
 const PrayerDetailsScreen = ({navigation, route}: PrayerDetailsScreenProps) => {
-  const prayer = route.params.prayer;
+  const prayerId = route.params.prayerId;
+  const prayer = useSelector(selectOnePrayer(prayerId));
+
+  if (!prayer) {
+    return (
+      <View>
+        <Text>Loading</Text>
+      </View>
+    );
+  }
+
   return (
     <>
       <Header title={prayer.title} />

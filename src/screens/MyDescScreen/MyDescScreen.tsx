@@ -51,7 +51,7 @@ const MyDescScreen = ({navigation}: MyDescScreenProps) => {
           return (
             <TouchableOpacity
               key={el.id}
-              onPress={() => navigation.navigate('Prayers', {columnInfo: el})}>
+              onPress={() => navigation.navigate('Prayers', {columnId: el.id})}>
               <ColumnItem>
                 <ColumnItemText>{el.title}</ColumnItemText>
               </ColumnItem>

@@ -7,3 +7,11 @@ export const Container = styled(View)`
   padding-horizontal: 15px;
   padding-vertical: 15px;
 `;
+
+export const BtnWrapper = styled(View)`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-vertical: 20px;
+`;

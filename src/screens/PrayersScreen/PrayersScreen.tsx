@@ -1,42 +1,28 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {TouchableOpacity, Alert, SafeAreaView, ScrollView} from 'react-native';
+import {TouchableOpacity, Alert} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
+import {MyPrayersScreen} from './components/MyPrayersScreen';
+import {SubscribedScreen} from './components/SubscribedScreen';
 import {RootStackParams} from '../../navigation/RootStack/RootStack';
 import {Settings} from '../../icons/Settings';
 import {getPrayersAction} from '../../store/actions';
-import {selectPrayers} from '../../store/selectors';
-import {SelectController} from './components/SelectController';
-import {AddPrayerForm} from './components/AddPrayerForm';
-import {PrayerList} from './components/PrayerList';
-import {BtnWrapper, Container} from './style';
-import {MainBtn} from '../../ui/MainBtn';
+import {selectOneColumn} from '../../store/selectors';
+
+const Tab = createMaterialTopTabNavigator();
 
 type PrayersScreenProps = NativeStackScreenProps<RootStackParams, 'Prayers'>;
 const PrayersScreen = ({navigation, route}: PrayersScreenProps) => {
   const dispatch = useDispatch();
-  const currentColumnId = route.params.columnInfo.id;
-  const prayers = useSelector(selectPrayers(currentColumnId));
-  const checkedPrayers = prayers.filter(elem => elem.checked === true);
-  const nonCheckedPrayers = prayers.filter(elem => elem.checked === false);
-  const [isShowCheckedPrayers, setIsShowCheckedPrayers] = useState(false);
-  const [prayersMode, setPrayersMode] = useState<'MY_PRAYERS' | 'SUBSCRIBED'>(
-    'MY_PRAYERS',
-  );
-
-  const toggleShowCheckedPrayers = () => {
-    setIsShowCheckedPrayers(!isShowCheckedPrayers);
-  };
-
-  const selectPrayersMode = (mode: 'MY_PRAYERS' | 'SUBSCRIBED') => {
-    setPrayersMode(mode);
-  };
+  const currentColumnId = route.params.columnId;
+  const curColumn = useSelector(selectOneColumn(route.params.columnId));
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShadowVisible: false,
-      title: route.params.columnInfo.title,
+      title: curColumn?.title,
       headerRight: () => (
         <TouchableOpacity onPress={() => Alert.alert('This is a settings')}>
           <Settings />
@@ -48,34 +34,22 @@ const PrayersScreen = ({navigation, route}: PrayersScreenProps) => {
   useEffect(() => {
     dispatch(getPrayersAction());
   }, []);
-
   return (
-    <SafeAreaView>
-      <SelectController
-        OnSelectPrayersMode={selectPrayersMode}
-        mode={prayersMode}
+    <Tab.Navigator
+      screenOptions={{
+        tabBarPressColor: 'transparent',
+        tabBarLabelStyle: {color: 'rgba(114, 168, 188, 1)'},
+        swipeEnabled: false,
+      }}>
+      <Tab.Screen
+        name={'MyPrayers'}
+        children={() => <MyPrayersScreen columnId={currentColumnId} />}
       />
-      <Container>
-        {prayersMode === 'MY_PRAYERS' && (
-          <AddPrayerForm currentColumnId={currentColumnId} />
-        )}
-        <ScrollView>
-          <PrayerList prayerList={nonCheckedPrayers} isChecked={false} />
-          {prayers.length > 0 && (
-            <BtnWrapper>
-              <MainBtn onPress={toggleShowCheckedPrayers}>
-                {isShowCheckedPrayers
-                  ? 'hide Answered Prayers'
-                  : 'Show Answered Prayers'}
-              </MainBtn>
-            </BtnWrapper>
-          )}
-          {isShowCheckedPrayers && (
-            <PrayerList prayerList={checkedPrayers} isChecked={true} />
-          )}
-        </ScrollView>
-      </Container>
-    </SafeAreaView>
+      <Tab.Screen
+        name={'Subscribed'}
+        children={() => <SubscribedScreen columnId={currentColumnId} />}
+      />
+    </Tab.Navigator>
   );
 };
 
