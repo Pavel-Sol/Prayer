@@ -9,8 +9,8 @@ import {
   PrayerDetailsScreen,
 } from '../../screens';
 import {useDispatch, useSelector} from 'react-redux';
-import {localStorage} from '../../store/services/localStorage/localStorage';
-import {loading, login} from '../../store/reducers/userSlice';
+import {localStorage} from '../../store/services/localStorage';
+import {loading, login} from '../../store/reducers';
 import {selectToken} from '../../store/selectors';
 
 export type RootStackParams = {

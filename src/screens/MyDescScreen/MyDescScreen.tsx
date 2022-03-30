@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {View, TouchableOpacity, ScrollView} from 'react-native';
 
-import {RootStackParams} from '../../navigation/RootStack/RootStack';
+import {RootStackParams} from '../../navigation';
 import {getColumnsAction} from '../../store/actions';
 import {AddIcon} from '../../icons';
 import {selectColumns} from '../../store/selectors';

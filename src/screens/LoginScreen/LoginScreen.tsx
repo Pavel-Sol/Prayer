@@ -4,7 +4,7 @@ import {View, Text, Button} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {Form, Field} from 'react-final-form';
 
-import {RootStackParams} from '../../navigation/RootStack/RootStack';
+import {RootStackParams} from '../../navigation';
 import {loginUserAction} from './../../store/actions';
 import {Loader, Input, MainBtn, Error} from '../../ui';
 import {selectUserError, selectUserLoading} from '../../store/selectors';

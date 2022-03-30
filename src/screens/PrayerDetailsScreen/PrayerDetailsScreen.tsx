@@ -1,6 +1,6 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {RootStackParams} from '../../navigation/RootStack/RootStack';
+import {RootStackParams} from '../../navigation';
 import {Header} from './components/Header';
 import {DetailsInfo} from './components/DetailsInfo';
 import {Content, Decor, LastPrayed, LastPrayedWrapper} from './style';

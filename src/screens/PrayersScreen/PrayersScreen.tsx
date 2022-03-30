@@ -6,7 +6,7 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 
 import {MyPrayersScreen} from './components/MyPrayersScreen';
 import {SubscribedScreen} from './components/SubscribedScreen';
-import {RootStackParams} from '../../navigation/RootStack/RootStack';
+import {RootStackParams} from '../../navigation';
 import {Settings} from '../../icons';
 import {getPrayersAction} from '../../store/actions';
 import {selectOneColumn} from '../../store/selectors';

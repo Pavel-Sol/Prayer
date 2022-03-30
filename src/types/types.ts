@@ -1,5 +1,6 @@
-import {loginUserAction, registerUserAction} from './../store/actions';
 import {
+  loginUserAction,
+  registerUserAction,
   createColumnAction,
   createPrayerAction,
   deletePrayerAction,
