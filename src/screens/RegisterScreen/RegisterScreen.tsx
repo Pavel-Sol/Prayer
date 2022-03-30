@@ -6,12 +6,9 @@ import {Form, Field} from 'react-final-form';
 
 import {RootStackParams} from '../../navigation/RootStack/RootStack';
 import {registerUserAction} from './../../store/actions';
-import {Loader} from '../../ui/Loader';
-import {Input} from '../../ui/Input';
-import {MainBtn} from '../../ui/MainBtn';
+import {Loader, Input, MainBtn, Error} from '../../ui';
 import {selectUserError, selectUserLoading} from '../../store/selectors';
 import {BtnWrap, Container} from './style';
-import {Error} from '../../ui/Error';
 
 type RegisterScreenProps = NativeStackScreenProps<RootStackParams, 'Register'>;
 const RegisterScreen = ({navigation}: RegisterScreenProps) => {

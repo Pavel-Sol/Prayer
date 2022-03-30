@@ -2,9 +2,9 @@ import React from 'react';
 import {Form, Field} from 'react-final-form';
 import {useDispatch} from 'react-redux';
 
-import {Comment} from '../../../../icons/Comment';
+import {Comment} from '../../../../icons';
 import {createCommentAction} from '../../../../store/actions';
-import {Input} from '../../../../ui/Input';
+import {Input} from '../../../../ui';
 import {Container, IconBtn} from './style';
 
 type AddCommentFormPropsType = {

@@ -16,9 +16,10 @@ import {
   DeleteBtnWrap,
   DeleteBtn,
 } from './style';
-import {Input} from '../../../../ui/Input';
+import {Input} from '../../../../ui';
 import {TouchableOpacity} from 'react-native';
-import {Comment} from '../../../../icons/Comment';
+
+import {Comment} from '../../../../icons';
 import {useDispatch} from 'react-redux';
 import {
   updateCommentAction,

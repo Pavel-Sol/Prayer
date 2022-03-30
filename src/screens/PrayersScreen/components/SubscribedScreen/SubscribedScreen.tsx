@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {ScrollView} from 'react-native';
 import {useSelector} from 'react-redux';
 import {selectPrayers} from '../../../../store/selectors';
-import {MainBtn} from '../../../../ui/MainBtn';
+import {MainBtn} from '../../../../ui';
 import {PrayerList} from '../PrayerList';
 import {BtnWrapper, Container} from './style';
 

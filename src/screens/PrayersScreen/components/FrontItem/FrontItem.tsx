@@ -3,8 +3,7 @@ import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import {useDispatch} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 
-import {Palms} from '../../../../icons/Palms';
-import {User} from '../../../../icons/User';
+import {Palms, User} from '../../../../icons';
 import {updatePrayerAction} from '../../../../store/actions';
 import {PrayerType} from '../../../../types/types';
 import {

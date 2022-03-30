@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
-import {AddIcon} from '../../../../icons/AddIcon';
+import {AddIcon} from '../../../../icons';
 import {
   Container,
   Title,

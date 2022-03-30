@@ -3,10 +3,8 @@ import {TouchableOpacity} from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {useNavigation} from '@react-navigation/native';
 
-import {ArrowLeft} from '../../../../icons/ArrowLeft';
-import {Palms} from '../../../../icons/Palms';
+import {ArrowLeft, Palms} from '../../../../icons';
 import {HeaderWrapper, TopRow, BottomRow, HeaderTitle} from './style';
-
 
 type HeaderPropsType = {
   title: string;

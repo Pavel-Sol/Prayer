@@ -1,15 +1,17 @@
 import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {LoginScreen} from '../../screens/LoginScreen';
-import {RegisterScreen} from '../../screens/RegisterScreen';
-import {MyDescScreen} from '../../screens/MyDescScreen';
-import {PrayersScreen} from '../../screens/PrayersScreen';
+import {
+  LoginScreen,
+  RegisterScreen,
+  MyDescScreen,
+  PrayersScreen,
+  PrayerDetailsScreen,
+} from '../../screens';
 import {useDispatch, useSelector} from 'react-redux';
 import {localStorage} from '../../store/services/localStorage/localStorage';
 import {loading, login} from '../../store/reducers/userSlice';
 import {selectToken} from '../../store/selectors';
-import {PrayerDetailsScreen} from '../../screens/PrayerDetailsScreen';
 
 export type RootStackParams = {
   Login: undefined;

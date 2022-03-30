@@ -1,10 +1,10 @@
 import React from 'react';
 import {Form, Field} from 'react-final-form';
 import {useDispatch} from 'react-redux';
-import {AddIcon} from '../../../../icons/AddIcon';
+import {AddIcon} from '../../../../icons';
 
 import {createPrayerAction} from '../../../../store/actions';
-import {Input} from '../../../../ui/Input';
+import {Input} from '../../../../ui';
 import {Container, IconBtn} from './style';
 
 type AddPrayerFormPropsType = {

@@ -5,7 +5,7 @@ import {View, TouchableOpacity, ScrollView} from 'react-native';
 
 import {RootStackParams} from '../../navigation/RootStack/RootStack';
 import {getColumnsAction} from '../../store/actions';
-import {AddIcon} from '../../icons/AddIcon';
+import {AddIcon} from '../../icons';
 import {selectColumns} from '../../store/selectors';
 import {ColumnItem, ColumnItemText, Container} from './style';
 import {AddColumnForm} from './components/AddColumnForm';
@@ -33,9 +33,7 @@ const MyDescScreen = ({navigation}: MyDescScreenProps) => {
 
   return (
     <Container>
-      <View>
-        {addColumnMode && <AddColumnForm />}
-      </View>
+      <View>{addColumnMode && <AddColumnForm />}</View>
 
       <ScrollView>
         {columns.map(el => {
